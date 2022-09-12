@@ -35,5 +35,7 @@ public class Main {
         }while(humanStatus != 'j' && humanStatus != 'n');
 
         database.createSuperHero(realName,heroName,creationYear,superPower,isHuman);
+
+
     }
 }
