@@ -1,22 +1,24 @@
-import javax.xml.crypto.Data;
-
 public class Database {
 
     private Superhero[] superheroes;
-    private int antalSuperHeroes;
+    private int superHeroesAmount;
 
     public Database(){
         superheroes = new Superhero[5];
-        antalSuperHeroes = 0;
+        superHeroesAmount = 0;
     }
 
     public void createSuperHero(String realName, String heroName,
                                 int creationYear, String superPower, boolean isHuman){
         Superhero newSuperHero = new Superhero(realName, heroName, creationYear, superPower, isHuman);
-        superheroes[antalSuperHeroes++] = newSuperHero;
+        superheroes[superHeroesAmount++] = newSuperHero;
     }
 
     public Superhero[] getSuperHero(){
         return superheroes;
+    }
+
+    public int getSuperHeroesAmount(){
+        return superHeroesAmount;
     }
 }
