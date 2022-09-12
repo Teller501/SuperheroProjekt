@@ -8,6 +8,8 @@ public class Main {
         System.out.print("Indtast superheltens rigtige navn: ");
         String realName = keyb.next();
 
+        System.out.println();
+
         System.out.print("Hvornår blev superhelten skabt? ");
         int creationYear = keyb.nextInt();
 
@@ -17,7 +19,7 @@ public class Main {
         System.out.print("Er superhelten menneske? (j/n) ");
         char humanStatus = keyb.next().charAt(0);
 
-        boolean isHuman;
+        boolean isHuman = false;
         do{
             if (humanStatus == 'j'){
                 isHuman = true;
@@ -28,6 +30,8 @@ public class Main {
             }
         }while(humanStatus != 'j' && humanStatus != 'n');
 
-        Superhero superhero1 = new Superhero();
+        Superhero superhero1 = new Superhero(realName,creationYear,superPower,isHuman);
+
+        System.out.println(superhero1.toString());
     }
 }

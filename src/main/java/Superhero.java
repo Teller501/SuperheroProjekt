@@ -10,4 +10,14 @@ public class Superhero {
         this.superPower = superPower;
         this.isHuman = isHuman;
     }
+
+    @Override
+    public String toString() {
+        return "Superhero{" +
+                "realName='" + realName + '\'' +
+                ", creationYear=" + creationYear +
+                ", superPower='" + superPower + '\'' +
+                ", isHuman=" + isHuman +
+                '}';
+    }
 }
