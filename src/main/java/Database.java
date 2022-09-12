@@ -15,4 +15,8 @@ public class Database {
         Superhero newSuperHero = new Superhero(realName, heroName, creationYear, superPower, isHuman);
         superheroes[antalSuperHeroes++] = newSuperHero;
     }
+
+    public Superhero[] getSuperHero(){
+        return superheroes;
+    }
 }

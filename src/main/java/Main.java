@@ -20,11 +20,12 @@ public class Main {
         System.out.print("Hvilket superkræfter besidder superhelten? ");
         String superPower = keyb.next();
 
-        System.out.print("Er superhelten menneske? (j/n) ");
-        char humanStatus = keyb.next().charAt(0);
-
         boolean isHuman = false;
+        char humanStatus;
         do{
+            System.out.print("Er superhelten menneske? (j/n) ");
+            humanStatus = keyb.next().charAt(0);
+
             if (humanStatus == 'j'){
                 isHuman = true;
             }else if(humanStatus == 'n'){
@@ -35,7 +36,6 @@ public class Main {
         }while(humanStatus != 'j' && humanStatus != 'n');
 
         database.createSuperHero(realName,heroName,creationYear,superPower,isHuman);
-
 
     }
 }
