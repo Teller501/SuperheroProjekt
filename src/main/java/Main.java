@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner keyb = new Scanner(System.in);
+    Database database = new Database();
     public static void main(String[] args) {
         System.out.println("Opret en superhelt");
 
