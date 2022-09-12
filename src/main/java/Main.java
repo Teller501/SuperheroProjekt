@@ -14,6 +14,20 @@ public class Main {
         System.out.print("Hvilket superkræfter besidder superhelten? ");
         String superPower = keyb.next();
 
+        System.out.print("Er superhelten menneske? (j/n) ");
+        char humanStatus = keyb.next().charAt(0);
 
+        boolean isHuman;
+        do{
+            if (humanStatus == 'j'){
+                isHuman = true;
+            }else if(humanStatus == 'n'){
+                isHuman = false;
+            } else {
+                System.out.println("ugyldigt input");
+            }
+        }while(humanStatus != 'j' && humanStatus != 'n');
+
+        Superhero superhero1 = new Superhero();
     }
 }
