@@ -2,12 +2,15 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner keyb = new Scanner(System.in);
-    Database database = new Database();
+    static Database database = new Database();
     public static void main(String[] args) {
         System.out.println("Opret en superhelt");
 
         System.out.print("Indtast superheltens rigtige navn: ");
         String realName = keyb.next();
+
+        System.out.print("Indtast superheltens heltenavn: ");
+        String heroName = keyb.next();
 
         System.out.println();
 
@@ -31,8 +34,6 @@ public class Main {
             }
         }while(humanStatus != 'j' && humanStatus != 'n');
 
-        Superhero superhero1 = new Superhero(realName,creationYear,superPower,isHuman);
-
-        System.out.println(superhero1.toString());
+        database.createSuperHero(realName,heroName,creationYear,superPower,isHuman);
     }
 }
