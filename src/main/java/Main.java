@@ -1,8 +1,9 @@
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
-    public Scanner keyb = new Scanner(System.in); // Erklærer scanner
+    public Scanner keyb = new Scanner(System.in).useLocale(Locale.ENGLISH); // Erklærer scanner
     public Database database = new Database(); // Erklærer database objekt
     public static void main(String[] args) {
         Main program = new Main();
@@ -17,6 +18,7 @@ public class Main {
         // Velkomst og menu
         System.out.println("Velkommen til kollektionen af superhelte!");
         System.out.println("1. Opret superhelt");
+        System.out.println("2. Se liste af oprettede superhelte");
         System.out.println("9. Afslut");
 
         // Switch-statement til at håndere input fra bruger i menuen
@@ -25,6 +27,9 @@ public class Main {
         switch(menuInput){
             case 1:
                 createSuperHero();
+                break;
+            case 2:
+                printSuperHero();
                 break;
             case 9:
                 System.exit(1);
@@ -81,8 +86,17 @@ public class Main {
     }
 
     public void printSuperHero(){
-        for (Superhero superheroes : database.getSuperHero()){
+        System.out.println("Liste af superhelte");
+        System.out.println("------------------------------------");
 
+        for (Superhero superheroes : database.getSuperHero()){
+            System.out.println("Superhelte navn: " + superheroes.getHeroName());
+            System.out.println("Superkraft: " + superheroes.getSuperPower());
+            System.out.println("Virkeligt navn: " + superheroes.getRealName());
+            System.out.println("Oprindelsesår: " + superheroes.getCreationYear());
+            System.out.println("Er menneske: " + superheroes.isHuman());
+            System.out.println("Styrke " + superheroes.getPower());
+            System.out.println("------------------------------------");
         }
     }
 }

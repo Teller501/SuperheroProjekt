@@ -37,4 +37,8 @@ public class Superhero {
     public double getPower() {
         return power;
     }
+
+    public boolean isHuman() {
+        return isHuman;
+    }
 }
