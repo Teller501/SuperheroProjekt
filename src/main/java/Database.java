@@ -3,8 +3,7 @@ import java.util.ArrayList;
 public class Database {
 
     // attributes
-    private ArrayList<Superhero> superheroes;
-    private int superHeroesAmount;
+    private ArrayList<Superhero> superheroes = new ArrayList<>();
 
 
 
@@ -21,8 +20,4 @@ public class Database {
         return superheroes;
     }
 
-    // getter til antallet af superheroes
-    public int getSuperHeroesAmount(){
-        return superHeroesAmount;
-    }
 }
