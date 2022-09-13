@@ -38,7 +38,11 @@ public class Superhero {
         return power;
     }
 
-    public boolean isHuman() {
-        return isHuman;
+    public String isHuman() {
+        if (isHuman == true){
+            return "Ja";
+        }else {
+            return "Nej";
+        }
     }
 }
