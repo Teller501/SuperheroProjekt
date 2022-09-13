@@ -14,6 +14,8 @@ public class Database {
                                 int creationYear, String superPower, boolean isHuman){
         Superhero newSuperHero = new Superhero(realName, heroName, creationYear, superPower, isHuman);
         superheroes[superHeroesAmount++] = newSuperHero;
+
+        System.out.println(newSuperHero);
     }
 
     // getter til superhero arrayet

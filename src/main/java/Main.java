@@ -20,6 +20,7 @@ public class Main {
 
         // Switch-statement til at håndere input fra bruger i menuen
         int menuInput = keyb.nextInt();
+        keyb.nextLine();
         switch(menuInput){
             case 1:
                 createSuperHero();
@@ -38,19 +39,18 @@ public class Main {
         if (database.getSuperHeroesAmount() < database.getSuperHero().length){
             System.out.println("Opret en superhelt");
 
-            System.out.print("Indtast superheltens rigtige navn: ");
-            String realName = keyb.next();
+            System.out.println("Indtast superheltens rigtige navn:");
+            String realName = keyb.nextLine();
 
-            System.out.print("Indtast superheltens heltenavn: ");
-            String heroName = keyb.next();
+            System.out.println("Indtast superheltens heltenavn:");
+            String heroName = keyb.nextLine();
 
-            System.out.println();
+            System.out.println("Hvilket superkræfter besidder superhelten?");
+            String superPower = keyb.nextLine();
 
-            System.out.print("Hvornår blev superhelten skabt? ");
+            System.out.println("Hvornår blev superhelten skabt?");
             int creationYear = keyb.nextInt();
 
-            System.out.print("Hvilket superkræfter besidder superhelten? ");
-            String superPower = keyb.next();
 
             // boolean for checking if superhero is human
             boolean isHuman = false;
