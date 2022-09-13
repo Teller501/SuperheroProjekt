@@ -1,25 +1,23 @@
+import java.util.ArrayList;
+
 public class Database {
 
     // attributes
-    private Superhero[] superheroes;
+    private ArrayList<Superhero> superheroes;
     private int superHeroesAmount;
 
-    public Database(){
-        superheroes = new Superhero[5];
-        superHeroesAmount = 0;
-    }
+
 
     // method der opretter en superhero i arrayet
     public void createSuperHero(String realName, String heroName,
                                 int creationYear, String superPower, boolean isHuman){
         Superhero newSuperHero = new Superhero(realName, heroName, creationYear, superPower, isHuman);
-        superheroes[superHeroesAmount++] = newSuperHero;
+        superheroes.add(newSuperHero);
 
-        System.out.println(newSuperHero);
     }
 
     // getter til superhero arrayet
-    public Superhero[] getSuperHero(){
+    public ArrayList<Superhero> getSuperHero(){
         return superheroes;
     }
 

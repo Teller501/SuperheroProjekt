@@ -36,47 +36,44 @@ public class Main {
     }
 
     public void createSuperHero(){
-        if (database.getSuperHeroesAmount() < database.getSuperHero().length){
-            System.out.println("Opret en superhelt");
 
-            System.out.println("Indtast superheltens rigtige navn:");
-            String realName = keyb.nextLine();
+        System.out.println("Opret en superhelt");
 
-            System.out.println("Indtast superheltens heltenavn:");
-            String heroName = keyb.nextLine();
+        System.out.println("Indtast superheltens rigtige navn:");
+        String realName = keyb.nextLine();
 
-            System.out.println("Hvilket superkræfter besidder superhelten?");
-            String superPower = keyb.nextLine();
+        System.out.println("Indtast superheltens heltenavn:");
+        String heroName = keyb.nextLine();
 
-            System.out.println("Hvornår blev superhelten skabt?");
-            int creationYear = keyb.nextInt();
+        System.out.println("Hvilket superkræfter besidder superhelten?");
+        String superPower = keyb.nextLine();
+
+        System.out.println("Hvornår blev superhelten skabt?");
+        int creationYear = keyb.nextInt();
 
 
-            // boolean for checking if superhero is human
-            boolean isHuman = false;
-            char humanStatus;
+        // boolean for checking if superhero is human
+        boolean isHuman = false;
+        char humanStatus;
 
-            // loop checking the human status
-            do {
-                System.out.print("Er superhelten menneske? (j/n) ");
-                humanStatus = keyb.next().charAt(0);
-                System.out.println();
+        // loop checking the human status
+        do {
+            System.out.print("Er superhelten menneske? (j/n) ");
+            humanStatus = keyb.next().charAt(0);
+            System.out.println();
 
-                if (humanStatus == 'j') {
-                    isHuman = true;
-                } else if (humanStatus == 'n') {
-                    isHuman = false;
-                } else {
-                    System.out.println("ugyldigt input");
-                }
-            } while (humanStatus != 'j' && humanStatus != 'n');
+            if (humanStatus == 'j') {
+                isHuman = true;
+            } else if (humanStatus == 'n') {
+                isHuman = false;
+            } else {
+                System.out.println("ugyldigt input");
+            }
+        } while (humanStatus != 'j' && humanStatus != 'n');
 
-            database.createSuperHero(realName, heroName, creationYear, superPower, isHuman);
-            udskrivVelkomst();
-        } else {
-            System.out.println("Ikke plads til flere superhelte!\n");
-            udskrivVelkomst();
-        }
+        database.createSuperHero(realName, heroName, creationYear, superPower, isHuman);
+        udskrivVelkomst();
+
 
 
     }
