@@ -9,8 +9,8 @@ public class Database {
 
     // method der opretter en superhero i arrayet
     public void createSuperHero(String realName, String heroName,
-                                int creationYear, String superPower, boolean isHuman){
-        Superhero newSuperHero = new Superhero(realName, heroName, creationYear, superPower, isHuman);
+                                int creationYear, String superPower, boolean isHuman, double power){
+        Superhero newSuperHero = new Superhero(realName, heroName, creationYear, superPower, isHuman, power);
         superheroes.add(newSuperHero);
 
     }

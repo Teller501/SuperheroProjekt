@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -9,10 +10,10 @@ public class Main {
         program.start();
     }
     public void start(){
-        udskrivVelkomst();
+        printWelcome();
     }
 
-    public void udskrivVelkomst(){
+    public void printWelcome(){
         // Velkomst og menu
         System.out.println("Velkommen til kollektionen af superhelte!");
         System.out.println("1. Opret superhelt");
@@ -30,7 +31,7 @@ public class Main {
                 break;
             default:
                 System.out.println("Ugyldigt Input\n");
-                udskrivVelkomst();
+                printWelcome();
                 break;
         }
     }
@@ -50,6 +51,9 @@ public class Main {
 
         System.out.println("Hvornår blev superhelten skabt?");
         int creationYear = keyb.nextInt();
+
+        System.out.println("Hvor stor en kræft har helten (hvis 1 er for et menneske) ");
+        double power = keyb.nextDouble();
 
 
         // boolean for checking if superhero is human
@@ -71,10 +75,14 @@ public class Main {
             }
         } while (humanStatus != 'j' && humanStatus != 'n');
 
-        database.createSuperHero(realName, heroName, creationYear, superPower, isHuman);
-        udskrivVelkomst();
+        database.createSuperHero(realName, heroName, creationYear, superPower, isHuman, power);
+        printWelcome();
 
+    }
 
+    public void printSuperHero(){
+        for (Superhero superheroes : database.getSuperHero()){
 
+        }
     }
 }
