@@ -26,6 +26,11 @@ public class Main {
                 break;
             case 9:
                 System.exit(1);
+                break;
+            default:
+                System.out.println("Ugyldigt Input\n");
+                udskrivVelkomst();
+                break;
         }
     }
 
@@ -47,8 +52,11 @@ public class Main {
             System.out.print("Hvilket superkræfter besidder superhelten? ");
             String superPower = keyb.next();
 
+            // boolean for checking if superhero is human
             boolean isHuman = false;
             char humanStatus;
+
+            // loop checking the human status
             do {
                 System.out.print("Er superhelten menneske? (j/n) ");
                 humanStatus = keyb.next().charAt(0);
