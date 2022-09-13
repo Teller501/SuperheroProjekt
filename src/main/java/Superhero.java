@@ -19,7 +19,11 @@ public class Superhero {
     }
 
     public String getHeroName() {
-        return heroName;
+        if (heroName == ""){
+            return "Intet superhelte navn";
+        }else {
+            return heroName;
+        }
     }
 
     public String getRealName() {
