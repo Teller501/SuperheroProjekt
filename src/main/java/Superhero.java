@@ -1,4 +1,5 @@
 public class Superhero {
+    // attributes
     private String realName;
     private String heroName;
     private int creationYear;
@@ -6,6 +7,7 @@ public class Superhero {
     private boolean isHuman;
 
 
+    // constructor
     public Superhero(String realName, String heroName, int creationYear, String superPower, boolean isHuman){
         this.realName = realName;
         this.heroName = heroName;

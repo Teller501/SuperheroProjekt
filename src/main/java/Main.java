@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class Main {
-    static Scanner keyb = new Scanner(System.in); // Erklærer scanner
-    static Database database = new Database(); // Erklærer database objekt
+    public Scanner keyb = new Scanner(System.in); // Erklærer scanner
+    public Database database = new Database(); // Erklærer database objekt
     public static void main(String[] args) {
         Main program = new Main();
 
