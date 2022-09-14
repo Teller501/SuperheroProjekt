@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -19,6 +18,7 @@ public class Main {
         System.out.println("Velkommen til kollektionen af superhelte!");
         System.out.println("1. Opret superhelt");
         System.out.println("2. Se liste af oprettede superhelte");
+        System.out.println("3. Søg efter superhelt");
         System.out.println("9. Afslut");
 
         // Switch-statement til at håndere input fra bruger i menuen
@@ -31,7 +31,10 @@ public class Main {
             case 2:
                 printSuperHero();
                 break;
+            case 3:
+                searchSuperHero();
             case 9:
+                System.out.println("Afslutter programmet...");
                 System.exit(1);
                 break;
             default:
@@ -39,6 +42,14 @@ public class Main {
                 printWelcome();
                 break;
         }
+    }
+
+    private void searchSuperHero() {
+        System.out.println("Indtast søgeord: ");
+        String searchTerm = keyb.nextLine();
+
+        database.searchForSuperhero(searchTerm);
+        System.out.println();
     }
 
     public void createSuperHero(){
@@ -89,13 +100,13 @@ public class Main {
         System.out.println("Liste af superhelte");
         System.out.println("------------------------------------");
 
-        for (Superhero superheroes : database.getSuperHero()){
+        for (Superhero superheroes : database.getAllSuperheroes()){
             System.out.println("Superhelte navn: " + superheroes.getHeroName());
             System.out.println("Superkraft: " + superheroes.getSuperPower());
             System.out.println("Virkeligt navn: " + superheroes.getRealName());
             System.out.println("Oprindelsesår: " + superheroes.getCreationYear());
             System.out.println("Er menneske: " + superheroes.isHuman());
-            System.out.println("Styrke " + superheroes.getPower());
+            System.out.println("Styrke: " + superheroes.getPower());
             System.out.println("------------------------------------");
         }
     }

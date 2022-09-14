@@ -16,8 +16,20 @@ public class Database {
     }
 
     // getter til superhero arrayet
-    public ArrayList<Superhero> getSuperHero(){
+    public ArrayList<Superhero> getAllSuperheroes(){
         return superheroes;
+    }
+
+    public Superhero searchForSuperhero(String searchTerm){
+        for (Superhero superhero : superheroes){
+            String name = superhero.getHeroName().toLowerCase();
+            if (name.contains(searchTerm.toLowerCase())){
+                return superhero;
+            }else{
+                return null;
+            }
+        }
+        return null;
     }
 
 }
