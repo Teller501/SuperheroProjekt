@@ -7,6 +7,8 @@ public class Main {
     public static void main(String[] args) {
         Main program = new Main();
 
+
+
         program.start();
     }
     public void start(){
@@ -14,6 +16,8 @@ public class Main {
     }
 
     public void printWelcome(){
+        database.createTestData(); // NOTE: Test Data, fjern når færdig
+
         // Velkomst og menu
         System.out.println("Velkommen til kollektionen af superhelte!");
         System.out.println("1. Opret superhelt");
@@ -102,6 +106,8 @@ public class Main {
             System.out.println("Styrke: " + superhero.getPower());
             System.out.println("------------------------------------");
         }
+
+        printWelcome();
     }
 
     private void searchSuperhero() {
@@ -109,13 +115,15 @@ public class Main {
         System.out.println("Indtast søgeord: ");
         String searchTerm = keyb.nextLine();
 
+        // adding searchTerm from input to database for searching
         Superhero superhero = database.searchForSuperhero(searchTerm);
 
+        // if no superhero found, print error
         if (superhero == null){
             System.out.println("Superhelt ikke fundet");
             System.out.println("------------------------------------");
             printWelcome();
-        }else{
+        }else{  // if found, print superhero info
             System.out.println("Superhelte navn: " + superhero.getHeroName());
             System.out.println("Superkraft: " + superhero.getSuperPower());
             System.out.println("Virkeligt navn: " + superhero.getRealName());
