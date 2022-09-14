@@ -25,8 +25,6 @@ public class Database {
             String name = superhero.getHeroName().toLowerCase();
             if (name.contains(searchTerm.toLowerCase())){
                 return superhero;
-            }else{
-                return null;
             }
         }
         return null;

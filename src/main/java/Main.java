@@ -32,7 +32,7 @@ public class Main {
                 printSuperHero();
                 break;
             case 3:
-                searchSuperHero();
+                searchSuperhero();
             case 9:
                 System.out.println("Afslutter programmet...");
                 System.exit(1);
@@ -44,13 +44,6 @@ public class Main {
         }
     }
 
-    private void searchSuperHero() {
-        System.out.println("Indtast søgeord: ");
-        String searchTerm = keyb.nextLine();
-
-        database.searchForSuperhero(searchTerm);
-        System.out.println();
-    }
 
     public void createSuperHero(){
 
@@ -100,14 +93,37 @@ public class Main {
         System.out.println("Liste af superhelte");
         System.out.println("------------------------------------");
 
-        for (Superhero superheroes : database.getAllSuperheroes()){
-            System.out.println("Superhelte navn: " + superheroes.getHeroName());
-            System.out.println("Superkraft: " + superheroes.getSuperPower());
-            System.out.println("Virkeligt navn: " + superheroes.getRealName());
-            System.out.println("Oprindelsesår: " + superheroes.getCreationYear());
-            System.out.println("Er menneske: " + superheroes.isHuman());
-            System.out.println("Styrke: " + superheroes.getPower());
+        for (Superhero superhero : database.getAllSuperheroes()){
+            System.out.println("Superhelte navn: " + superhero.getHeroName());
+            System.out.println("Superkraft: " + superhero.getSuperPower());
+            System.out.println("Virkeligt navn: " + superhero.getRealName());
+            System.out.println("Oprindelsesår: " + superhero.getCreationYear());
+            System.out.println("Er menneske: " + superhero.isHuman());
+            System.out.println("Styrke: " + superhero.getPower());
             System.out.println("------------------------------------");
+        }
+    }
+
+    private void searchSuperhero() {
+        System.out.println("------------------------------------");
+        System.out.println("Indtast søgeord: ");
+        String searchTerm = keyb.nextLine();
+
+        Superhero superhero = database.searchForSuperhero(searchTerm);
+
+        if (superhero == null){
+            System.out.println("Superhelt ikke fundet");
+            System.out.println("------------------------------------");
+            printWelcome();
+        }else{
+            System.out.println("Superhelte navn: " + superhero.getHeroName());
+            System.out.println("Superkraft: " + superhero.getSuperPower());
+            System.out.println("Virkeligt navn: " + superhero.getRealName());
+            System.out.println("Oprindelsesår: " + superhero.getCreationYear());
+            System.out.println("Er menneske: " + superhero.isHuman());
+            System.out.println("Styrke: " + superhero.getPower());
+            System.out.println("------------------------------------");
+            printWelcome();
         }
     }
 }
