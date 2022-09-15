@@ -11,6 +11,7 @@ public class Database {
         createSuperHero("Bruce Wayne", "Batman", 2001, "Rig", true,2);
         createSuperHero("Tony Stark", "Iron Man", 1998, "Flyve", true,2);
         createSuperHero("Ved ikke", "Black Panther", 2001, "Rig", true,2);
+        createSuperHero("Ved ikke", "Iron Panther", 2001, "Rig", true,2);
     }
 
     // creating superhero from parameters
@@ -25,12 +26,13 @@ public class Database {
     public ArrayList<Superhero> getAllSuperheroes(){
         return superheroes;
     }
-
+    ArrayList<Superhero> searchResults = new ArrayList<>();
     public Superhero searchForSuperhero(String searchTerm){
         // Loop through arraylist of superheroes, return if matching searchTerm
         for (Superhero superhero : superheroes){
             String name = superhero.getHeroName().toLowerCase(); // making all characters in superhero name lower case
             if (name.contains(searchTerm.toLowerCase())){ // if superhero contains searchTerm, return superhero
+                searchResults.add(superhero);
                 return superhero;
             }
         }
@@ -38,4 +40,7 @@ public class Database {
         return null;
     }
 
+    public ArrayList<Superhero> getSearchResults() {
+        return searchResults;
+    }
 }

@@ -117,6 +117,14 @@ public class UserInterface {
         // adding searchTerm from input to database for searching
         Superhero superhero = database.searchForSuperhero(searchTerm);
 
+        for (Superhero searchResult : database.getSearchResults()){
+            if (searchResult == null){
+                System.out.println("Ingen fundet");
+            }else {
+                System.out.println(searchResult.getHeroName());
+            }
+        }
+
         // Condition checking whether superhero is found or not
         if (superhero == null){ // if no superhero found, print error message
             System.out.println("Superhelt ikke fundet");
