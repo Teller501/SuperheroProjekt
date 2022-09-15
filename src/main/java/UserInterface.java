@@ -19,13 +19,13 @@ public class UserInterface {
         System.out.println("3. Søg efter superhelt");
         System.out.println("9. Afslut");
 
-        handleMenuInput();
-    }
-
-    public void handleMenuInput() {
-        // Switch-statement handling userinput and calling methods
         int menuInput = keyb.nextInt();
         keyb.nextLine();
+        handleMenuInput(menuInput);
+    }
+
+    public void handleMenuInput(int menuInput) {
+        // Switch-statement handling userinput and calling methods
         switch(menuInput){
             case 1:
                 createSuperHero();
