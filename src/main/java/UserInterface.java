@@ -1,15 +1,10 @@
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Main {
+public class UserInterface {
     public Scanner keyb = new Scanner(System.in).useLocale(Locale.ENGLISH); // Declaring scanner object
     public Database database = new Database(); // Declaring database object
-    public UserInterface ui = new UserInterface();
-    public static void main(String[] args) {
-        UserInterface ui = new UserInterface();
 
-        ui.start();
-    }
     public void start(){
         printWelcome();
     }
@@ -46,7 +41,6 @@ public class Main {
                 break;
         }
     }
-
 
     public void createSuperHero(){
 
@@ -119,7 +113,7 @@ public class Main {
         // adding searchTerm from input to database for searching
         Superhero superhero = database.searchForSuperhero(searchTerm);
 
-       // Condition checking whether superhero is found or not
+        // Condition checking whether superhero is found or not
         if (superhero == null){ // if no superhero found, print error message
             System.out.println("Superhelt ikke fundet");
             System.out.println("------------------------------------");
