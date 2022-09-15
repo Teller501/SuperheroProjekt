@@ -6,13 +6,14 @@ public class Database {
     private ArrayList<Superhero> superheroes = new ArrayList<>();
 
 
+    // TEST DATA - Delete when done
     public void createTestData(){
         createSuperHero("Bruce Wayne", "Batman", 2001, "Rig", true,2);
         createSuperHero("Tony Stark", "Iron Man", 1998, "Flyve", true,2);
         createSuperHero("Ved ikke", "Black Panther", 2001, "Rig", true,2);
     }
 
-    // method der opretter en superhero i arrayet
+    // creating superhero from parameters
     public void createSuperHero(String realName, String heroName,
                                 int creationYear, String superPower, boolean isHuman, double power){
         Superhero newSuperHero = new Superhero(realName, heroName, creationYear, superPower, isHuman, power);
@@ -20,18 +21,20 @@ public class Database {
 
     }
 
-    // getter til superhero arrayet
+    // getter for superhero ArrayList
     public ArrayList<Superhero> getAllSuperheroes(){
         return superheroes;
     }
 
     public Superhero searchForSuperhero(String searchTerm){
+        // Loop through arraylist of superheroes, return if matching searchTerm
         for (Superhero superhero : superheroes){
-            String name = superhero.getHeroName().toLowerCase();
-            if (name.contains(searchTerm.toLowerCase())){
+            String name = superhero.getHeroName().toLowerCase(); // making all characters in superhero name lower case
+            if (name.contains(searchTerm.toLowerCase())){ // if superhero contains searchTerm, return superhero
                 return superhero;
             }
         }
+        // none found, return null
         return null;
     }
 

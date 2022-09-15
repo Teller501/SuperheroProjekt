@@ -2,8 +2,8 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
-    public Scanner keyb = new Scanner(System.in).useLocale(Locale.ENGLISH); // Erklærer scanner
-    public Database database = new Database(); // Erklærer database objekt
+    public Scanner keyb = new Scanner(System.in).useLocale(Locale.ENGLISH); // Declaring scanner object
+    public Database database = new Database(); // Declaring database object
     public static void main(String[] args) {
         Main program = new Main();
 
@@ -16,14 +16,14 @@ public class Main {
     public void printWelcome(){
         database.createTestData(); // NOTE: Test Data, fjern når færdig
 
-        // Velkomst og menu
+        // Welcome and menu
         System.out.println("Velkommen til kollektionen af superhelte!");
         System.out.println("1. Opret superhelt");
         System.out.println("2. Se liste af oprettede superhelte");
         System.out.println("3. Søg efter superhelt");
         System.out.println("9. Afslut");
 
-        // Switch-statement til at håndere input fra bruger i menuen
+        // Switch-statement handling userinput and calling methods
         int menuInput = keyb.nextInt();
         keyb.nextLine();
         switch(menuInput){
@@ -86,6 +86,7 @@ public class Main {
             }
         } while (humanStatus != 'j' && humanStatus != 'n');
 
+        // Creating superhero from database class
         database.createSuperHero(realName, heroName, creationYear, superPower, isHuman, power);
         printWelcome();
 
@@ -95,6 +96,7 @@ public class Main {
         System.out.println("Liste af superhelte");
         System.out.println("------------------------------------");
 
+        // Looping through ArrayList of superheroes, printing out in list
         for (Superhero superhero : database.getAllSuperheroes()){
             System.out.println("Superhelte navn: " + superhero.getHeroName());
             System.out.println("Superkraft: " + superhero.getSuperPower());
@@ -116,8 +118,8 @@ public class Main {
         // adding searchTerm from input to database for searching
         Superhero superhero = database.searchForSuperhero(searchTerm);
 
-        // if no superhero found, print error
-        if (superhero == null){
+       // Condition checking whether superhero is found or not
+        if (superhero == null){ // if no superhero found, print error message
             System.out.println("Superhelt ikke fundet");
             System.out.println("------------------------------------");
             printWelcome();
