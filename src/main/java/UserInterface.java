@@ -100,17 +100,21 @@ public class UserInterface {
         System.out.println("Liste af superhelte");
         System.out.println("------------------------------------");
 
-        // Looping through ArrayList of superheroes, printing out in list
-        for (Superhero superhero : database.getAllSuperheroes()){
-            System.out.println("Superhelte navn: " + superhero.getHeroName());
-            System.out.println("Superkraft: " + superhero.getSuperPower());
-            System.out.println("Virkeligt navn: " + superhero.getRealName());
-            System.out.println("Oprindelsesår: " + superhero.getCreationYear());
-            System.out.println("Er menneske: " + superhero.isHuman());
-            System.out.println("Styrke: " + superhero.getPower());
+        if (database.getAllSuperheroes().isEmpty()){
+            System.out.println("Ingen superhelte i databasen.");
             System.out.println("------------------------------------");
+        }else {
+            // Looping through ArrayList of superheroes, printing out in list
+            for (Superhero superhero : database.getAllSuperheroes()) {
+                System.out.println("Superhelte navn: " + superhero.getHeroName());
+                System.out.println("Superkraft: " + superhero.getSuperPower());
+                System.out.println("Virkeligt navn: " + superhero.getRealName());
+                System.out.println("Oprindelsesår: " + superhero.getCreationYear());
+                System.out.println("Er menneske: " + superhero.isHuman());
+                System.out.println("Styrke: " + superhero.getPower());
+                System.out.println("------------------------------------");
+            }
         }
-
         printWelcome();
     }
 
