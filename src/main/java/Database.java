@@ -29,7 +29,7 @@ public class Database {
     }
     ArrayList<Superhero> searchResults = new ArrayList<>();
     public Superhero searchForSuperhero(String searchTerm){
-        Superhero searchResult = null;
+        Superhero searchResult = null; // setting search result to null at the beginning
 
         // Loop through arraylist of superheroes, return if matching searchTerm
         for (Superhero superhero : superheroes){
@@ -39,10 +39,11 @@ public class Database {
                 searchResult = superhero;
             }
         }
-        // none found, return null
+        // return searchResult
         return searchResult;
     }
 
+    // returns arraylist of the matching search results
     public ArrayList<Superhero> getSearchResults() {
         return searchResults;
     }

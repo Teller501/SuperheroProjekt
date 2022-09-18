@@ -18,8 +18,9 @@ public class Superhero {
         this.power = power;
     }
 
+    // Printing out if heroName is empty
     public String getHeroName() {
-        if (heroName == ""){
+        if (heroName.isEmpty()){
             return "Intet superhelte navn";
         }else {
             return heroName;
@@ -42,6 +43,7 @@ public class Superhero {
         return power;
     }
 
+    // Returning different than "true" or "false" when printing isHuman boolean
     public String isHuman() {
         if (isHuman == true){
             return "Ja";
@@ -50,22 +52,27 @@ public class Superhero {
         }
     }
 
+    // setting new hero name
     public void setHeroName(String newHeroName) {
         this.heroName = newHeroName;
     }
 
+    // setting new superpower
     public void setSuperPower(String newSuperPower) {
         this.superPower = newSuperPower;
     }
 
+    // setting new real name
     public void setRealName(String newRealName) {
         this.realName = newRealName;
     }
 
+    // setting new power
     public void setPower(String newPower) {
         this.power = Double.parseDouble(newPower);
     }
 
+    // setting new creation year
     public void setCreationYear(String newCreationYear) {
         this.creationYear = Integer.parseInt(newCreationYear);
     }
