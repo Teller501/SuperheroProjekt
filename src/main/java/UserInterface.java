@@ -17,6 +17,7 @@ public class UserInterface {
         System.out.println("1. Opret superhelt");
         System.out.println("2. Se liste af oprettede superhelte");
         System.out.println("3. Søg efter superhelt");
+        System.out.println("4. Rediger superhelt");
         System.out.println("9. Afslut");
 
         int menuInput = keyb.nextInt();
@@ -146,8 +147,63 @@ public class UserInterface {
     }
 
     public void updateSuperhero() {
-        for (Superhero searchResult : database.getSearchResults()){
+        System.out.println("------------------------------------");
+        System.out.println("Indtast søgeord: ");
+        String searchTerm = keyb.nextLine();
 
+        // adding searchTerm from input to database for searching
+        database.searchForSuperhero(searchTerm);
+
+        int index = 1;
+        for (Superhero searchResult : database.getSearchResults()){
+            if (searchResult == null){
+                System.out.println("Ingen fundet");
+            }else {
+                System.out.println(index++ + ": "+searchResult.getHeroName());
+
+            }
         }
+
+        System.out.println("Vælg superhelten du vil redigere: ");
+        int superheroChoice = Integer.parseInt(keyb.nextLine());
+
+        Superhero editSuperhero = database.getSearchResults().get(superheroChoice-1);
+        System.out.println("Redigere: " + editSuperhero.getHeroName());
+
+        System.out.println("------------------------------------");
+
+        System.out.println("Indtast data der skal ændres og klik ENTER. Skal data ikke ændres, klik blot ENTER.");
+
+        System.out.println("Navn: " + editSuperhero.getHeroName());
+        String newHeroName = keyb.nextLine();
+        if (!newHeroName.isEmpty()){
+            editSuperhero.setHeroName(newHeroName);
+        }
+
+        System.out.println("Superkræft(er): " + editSuperhero.getSuperPower());
+        String newSuperPower = keyb.nextLine();
+        if (!newSuperPower.isEmpty()){
+            editSuperhero.setSuperPower(newSuperPower);
+        }
+
+        System.out.println("Rigtige navn: " + editSuperhero.getRealName());
+        String newRealName = keyb.nextLine();
+        if (!newRealName.isEmpty()){
+            editSuperhero.setRealName(newRealName);
+        }
+
+        System.out.println("Styrke: " + editSuperhero.getPower());
+        String newPower = keyb.nextLine();
+        if (!newPower.isEmpty()){
+            editSuperhero.setPower(newPower);
+        }
+
+        System.out.println("Oprindelsesår: " + editSuperhero.getCreationYear());
+        String newCreationYear = keyb.nextLine();
+        if (!newCreationYear.isEmpty()){
+            editSuperhero.setCreationYear(newCreationYear);
+        }
+
+        printWelcome();
     }
 }

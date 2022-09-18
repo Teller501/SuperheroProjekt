@@ -49,4 +49,24 @@ public class Superhero {
             return "Nej";
         }
     }
+
+    public void setHeroName(String newHeroName) {
+        this.heroName = newHeroName;
+    }
+
+    public void setSuperPower(String newSuperPower) {
+        this.superPower = newSuperPower;
+    }
+
+    public void setRealName(String newRealName) {
+        this.realName = newRealName;
+    }
+
+    public void setPower(String newPower) {
+        this.power = Double.parseDouble(newPower);
+    }
+
+    public void setCreationYear(String newCreationYear) {
+        this.creationYear = Integer.parseInt(newCreationYear);
+    }
 }
