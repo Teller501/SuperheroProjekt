@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -23,9 +24,12 @@ public class UserInterface {
         System.out.println("9. Afslut");
 
         // Input for menu choice
-        int menuInput = keyb.nextInt();
-        keyb.nextLine();
-        handleMenuInput(menuInput);
+        int menuInput = 0;
+        while(menuInput != 9){
+            menuInput = keyb.nextInt();
+            keyb.nextLine();
+            handleMenuInput(menuInput);
+        }
     }
 
     public void handleMenuInput(int menuInput) {
@@ -67,12 +71,35 @@ public class UserInterface {
         System.out.println("Hvilket superkræfter besidder superhelten?");
         String superPower = keyb.nextLine(); // Inputting superpowers of hero
 
-        System.out.println("Hvornår blev superhelten skabt?");
-        int creationYear = keyb.nextInt(); // Inputting creation year of superhero
+        int creationYear = 0;
+        boolean creationYearInputError = false;
+        do {
+            try{
+                System.out.println("Hvornår blev superhelten skabt?");
+                creationYear = Integer.parseInt(keyb.nextLine()); // Inputting creation year of superhero
+                creationYearInputError = false;
+            }
+            catch (NumberFormatException e){
+                System.out.println("Ugyldigt input, prøv igen");
+                creationYearInputError = true;
+            }
 
-        System.out.println("Hvor stor en kræft har helten (hvis 1 er for et menneske) ");
-        double power = keyb.nextDouble(); // Inputting power of superhero
+        }while(creationYearInputError == true);
 
+        double power = 0;
+        boolean powerInputError = false;
+        do {
+            try{
+                System.out.println("Hvor stor en kræft har helten (hvis 1 er for et menneske) ");
+                power = Double.parseDouble(keyb.nextLine()); // Inputting power of superhero
+                powerInputError = false;
+            }
+            catch (NumberFormatException e){
+                System.out.println("Ugyldigt input, prøv igen");
+                powerInputError = true;
+            }
+
+        }while(powerInputError == true);
 
         // boolean for checking if superhero is human
         boolean isHuman = false;
@@ -95,7 +122,6 @@ public class UserInterface {
 
         // Creating superhero from database class
         database.createSuperHero(realName, heroName, creationYear, superPower, isHuman, power);
-        printWelcome(); // Return to menu
 
     }
 
@@ -121,7 +147,6 @@ public class UserInterface {
                 System.out.println("------------------------------------");
             }
         }
-        printWelcome();
     }
 
     public void searchSuperhero() {
@@ -143,18 +168,26 @@ public class UserInterface {
             }
 
         System.out.println("Vælg superhelten du vil have skrevet ud: ");
-        int superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero you want to look at
+        int superheroChoice = 1;
+        boolean inputError = false;
+        do{
+            try{
+                superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero you want to look at
+                inputError = false;
+                // Printing out the selected hero
+                System.out.println("Superhelte navn: " + searchResults.get(superheroChoice-1).getHeroName());
+                System.out.println("Superkraft: " + searchResults.get(superheroChoice-1).getSuperPower());
+                System.out.println("Virkeligt navn: " + searchResults.get(superheroChoice-1).getRealName());
+                System.out.println("Oprindelsesår: " + searchResults.get(superheroChoice-1).getCreationYear());
+                System.out.println("Er menneske: " + searchResults.get(superheroChoice-1).isHuman());
+                System.out.println("Styrke: " + searchResults.get(superheroChoice-1).getPower()+"\n");
+            }
+            catch (IndexOutOfBoundsException e){
+                System.out.println("Ugyldigt input, prøv igen");
+                inputError = true;
+            }
+        }while(inputError == true);
 
-
-        // Printing out the selected hero
-        System.out.println("Superhelte navn: " + searchResults.get(superheroChoice-1).getHeroName());
-        System.out.println("Superkraft: " + searchResults.get(superheroChoice-1).getSuperPower());
-        System.out.println("Virkeligt navn: " + searchResults.get(superheroChoice-1).getRealName());
-        System.out.println("Oprindelsesår: " + searchResults.get(superheroChoice-1).getCreationYear());
-        System.out.println("Er menneske: " + searchResults.get(superheroChoice-1).isHuman());
-        System.out.println("Styrke: " + searchResults.get(superheroChoice-1).getPower()+"\n");
-
-        printWelcome(); // return to menu
 
     }
 
@@ -178,45 +211,57 @@ public class UserInterface {
         }
 
         System.out.println("Vælg superhelten du vil redigere: ");
-        int superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero to update
 
-        Superhero editSuperhero = searchResults.get(superheroChoice-1);
-        System.out.println("Redigere: " + editSuperhero.getHeroName());
+        int superheroChoice = 1;
+        boolean inputError = false;
+        do {
+            try{
+                superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero to update
+                Superhero editSuperhero = searchResults.get(superheroChoice-1);
+                System.out.println("Redigere: " + editSuperhero.getHeroName());
 
-        System.out.println("------------------------------------");
+                System.out.println("------------------------------------");
 
-        System.out.println("Indtast data der skal ændres og klik ENTER. Skal data ikke ændres, klik blot ENTER.");
+                System.out.println("Indtast data der skal ændres og klik ENTER. Skal data ikke ændres, klik blot ENTER.");
 
-        System.out.println("Navn: " + editSuperhero.getHeroName());
-        String newHeroName = keyb.nextLine();
-        if (!newHeroName.isEmpty()){ // if the input is not empty, set new data
-            editSuperhero.setHeroName(newHeroName);
-        }
+                System.out.println("Navn: " + editSuperhero.getHeroName());
+                String newHeroName = keyb.nextLine();
+                if (!newHeroName.isEmpty()){ // if the input is not empty, set new data
+                    editSuperhero.setHeroName(newHeroName);
+                }
 
-        System.out.println("Superkræft(er): " + editSuperhero.getSuperPower());
-        String newSuperPower = keyb.nextLine();
-        if (!newSuperPower.isEmpty()){ // if the input is not empty, set new data
-            editSuperhero.setSuperPower(newSuperPower);
-        }
+                System.out.println("Superkræft(er): " + editSuperhero.getSuperPower());
+                String newSuperPower = keyb.nextLine();
+                if (!newSuperPower.isEmpty()){ // if the input is not empty, set new data
+                    editSuperhero.setSuperPower(newSuperPower);
+                }
 
-        System.out.println("Rigtige navn: " + editSuperhero.getRealName());
-        String newRealName = keyb.nextLine();
-        if (!newRealName.isEmpty()){ // if the input is not empty, set new data
-            editSuperhero.setRealName(newRealName);
-        }
+                System.out.println("Rigtige navn: " + editSuperhero.getRealName());
+                String newRealName = keyb.nextLine();
+                if (!newRealName.isEmpty()){ // if the input is not empty, set new data
+                    editSuperhero.setRealName(newRealName);
+                }
 
-        System.out.println("Styrke: " + editSuperhero.getPower());
-        String newPower = keyb.nextLine();
-        if (!newPower.isEmpty()){ // if the input is not empty, set new data
-            editSuperhero.setPower(newPower);
-        }
+                System.out.println("Styrke: " + editSuperhero.getPower());
+                String newPower = keyb.nextLine();
+                if (!newPower.isEmpty()){ // if the input is not empty, set new data
+                    editSuperhero.setPower(newPower);
+                }
 
-        System.out.println("Oprindelsesår: " + editSuperhero.getCreationYear());
-        String newCreationYear = keyb.nextLine();
-        if (!newCreationYear.isEmpty()){ // if the input is not empty, set new data
-            editSuperhero.setCreationYear(newCreationYear);
-        }
+                System.out.println("Oprindelsesår: " + editSuperhero.getCreationYear());
+                String newCreationYear = keyb.nextLine();
+                if (!newCreationYear.isEmpty()){ // if the input is not empty, set new data
+                    editSuperhero.setCreationYear(newCreationYear);
+                }
+                inputError = false;
+            }
+            catch(IndexOutOfBoundsException e){
+                System.out.println("Ugyldigt input, prøv igen");
+                inputError = true;
+            }
+        }while(inputError == true);
 
-        printWelcome(); // return to menu
+
+
     }
 }
