@@ -27,24 +27,23 @@ public class Database {
     public ArrayList<Superhero> getAllSuperheroes(){
         return superheroes;
     }
-    ArrayList<Superhero> searchResults = new ArrayList<>();
-    public Superhero searchForSuperhero(String searchTerm){
-        Superhero searchResult = null; // setting search result to null at the beginning
+
+    public ArrayList<Superhero> searchForSuperhero(String searchTerm){
+        ArrayList<Superhero> searchResults = new ArrayList<>(); // creating arraylist of superheroes
 
         // Loop through arraylist of superheroes, return if matching searchTerm
         for (Superhero superhero : superheroes){
             String name = superhero.getHeroName().toLowerCase(); // making all characters in superhero name lower case
-            if (name.contains(searchTerm.toLowerCase())){ // if superhero contains searchTerm, return superhero
+            if (name.contains(searchTerm.toLowerCase())){ // if superhero contains searchTerm, add superhero to arraylist
                 searchResults.add(superhero);
-                searchResult = superhero;
             }
         }
         // return searchResult
-        return searchResult;
-    }
-
-    // returns arraylist of the matching search results
-    public ArrayList<Superhero> getSearchResults() {
         return searchResults;
     }
+
+    /*// returns arraylist of the matching search results
+    public ArrayList<Superhero> getSearchResults() {
+        return searchResults;
+    }*/
 }

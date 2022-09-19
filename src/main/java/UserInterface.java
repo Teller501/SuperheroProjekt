@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -126,29 +127,29 @@ public class UserInterface {
         String searchTerm = keyb.nextLine();
 
         // adding searchTerm from input to database for searching
-        database.searchForSuperhero(searchTerm);
+        ArrayList<Superhero> searchResults = database.searchForSuperhero(searchTerm);
 
         // Printing out all superheroes matching search term
         int index = 1;
-        for (Superhero searchResult : database.getSearchResults()){
-            if (searchResult == null){
+            if (searchResults.isEmpty()){
                 System.out.println("Ingen fundet");
             }else {
-                System.out.println(index++ + ": "+searchResult.getHeroName());
-
+                for (Superhero searchResult : searchResults) {
+                    System.out.println(index++ + ": " + searchResult.getHeroName());
+                }
             }
-        }
 
         System.out.println("Vælg superhelten du vil have skrevet ud: ");
         int superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero you want to look at
 
+
         // Printing out the selected hero
-        System.out.println("Superhelte navn: " + database.getSearchResults().get(superheroChoice-1).getHeroName());
-        System.out.println("Superkraft: " + database.getSearchResults().get(superheroChoice-1).getSuperPower());
-        System.out.println("Virkeligt navn: " + database.getSearchResults().get(superheroChoice-1).getRealName());
-        System.out.println("Oprindelsesår: " + database.getSearchResults().get(superheroChoice-1).getCreationYear());
-        System.out.println("Er menneske: " + database.getSearchResults().get(superheroChoice-1).isHuman());
-        System.out.println("Styrke: " + database.getSearchResults().get(superheroChoice-1).getPower()+"\n");
+        System.out.println("Superhelte navn: " + searchResults.get(superheroChoice-1).getHeroName());
+        System.out.println("Superkraft: " + searchResults.get(superheroChoice-1).getSuperPower());
+        System.out.println("Virkeligt navn: " + searchResults.get(superheroChoice-1).getRealName());
+        System.out.println("Oprindelsesår: " + searchResults.get(superheroChoice-1).getCreationYear());
+        System.out.println("Er menneske: " + searchResults.get(superheroChoice-1).isHuman());
+        System.out.println("Styrke: " + searchResults.get(superheroChoice-1).getPower()+"\n");
 
         printWelcome(); // return to menu
 
@@ -160,12 +161,12 @@ public class UserInterface {
         String searchTerm = keyb.nextLine();
 
         // adding searchTerm from input to database for searching
-        database.searchForSuperhero(searchTerm);
+        ArrayList<Superhero> searchResults = database.searchForSuperhero(searchTerm);
 
         // Printing out all superheroes matching search term
         int index = 1;
-        for (Superhero searchResult : database.getSearchResults()){
-            if (searchResult == null){
+        for (Superhero searchResult : searchResults){
+            if (searchResults.isEmpty()){
                 System.out.println("Ingen fundet");
             }else {
                 System.out.println(index++ + ": "+searchResult.getHeroName());
@@ -176,7 +177,7 @@ public class UserInterface {
         System.out.println("Vælg superhelten du vil redigere: ");
         int superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero to update
 
-        Superhero editSuperhero = database.getSearchResults().get(superheroChoice-1);
+        Superhero editSuperhero = searchResults.get(superheroChoice-1);
         System.out.println("Redigere: " + editSuperhero.getHeroName());
 
         System.out.println("------------------------------------");
