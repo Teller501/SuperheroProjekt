@@ -191,7 +191,7 @@ public class UserInterface {
                         System.out.println("Er menneske: " + searchResults.get(superheroChoice-1).isHuman());
                         System.out.println("Styrke: " + searchResults.get(superheroChoice-1).getPower()+"\n");
                     }
-                    catch (IndexOutOfBoundsException e){
+                    catch (IndexOutOfBoundsException | NumberFormatException e){
                         System.out.println("Ugyldigt input, prøv igen");
                         inputError = true;
                     }
@@ -206,6 +206,7 @@ public class UserInterface {
 
         // adding searchTerm from input to database for searching
         ArrayList<Superhero> searchResults = database.searchForSuperhero(searchTerm);
+
 
         // Printing out all superheroes matching search term
         int index = 1;
@@ -260,7 +261,7 @@ public class UserInterface {
                         }
                         inputError = false;
                     }
-                    catch(IndexOutOfBoundsException e){
+                    catch(IndexOutOfBoundsException | NumberFormatException e){
                         System.out.println("Ugyldigt input, prøv igen");
                         inputError = true;
                     }
