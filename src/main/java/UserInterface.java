@@ -7,11 +7,12 @@ public class UserInterface {
     public Database database = new Database(); // Declaring database object
 
     public void start(){
+        database.createTestData(); // NOTE: Test Data, fjern når færdig
         printWelcome();
     }
 
     public void printWelcome(){
-        database.createTestData(); // NOTE: Test Data, fjern når færdig
+
 
         // Welcome and menu
         System.out.println("Velkommen til kollektionen af superhelte!");
@@ -102,13 +103,15 @@ public class UserInterface {
         System.out.println("Liste af superhelte");
         System.out.println("------------------------------------");
 
+        ArrayList<Superhero> allSuperheroes = database.getAllSuperheroes();
+
         // Checking if ArrayList is empty
-        if (database.getAllSuperheroes().isEmpty()){ // If empty, print message
+        if (allSuperheroes.isEmpty()){ // If empty, print message
             System.out.println("Ingen superhelte i databasen.");
             System.out.println("------------------------------------");
         }else {
             // Looping through ArrayList of superheroes, printing out in list
-            for (Superhero superhero : database.getAllSuperheroes()) {
+            for (Superhero superhero : allSuperheroes) {
                 System.out.println("Superhelte navn: " + superhero.getHeroName());
                 System.out.println("Superkraft: " + superhero.getSuperPower());
                 System.out.println("Virkeligt navn: " + superhero.getRealName());

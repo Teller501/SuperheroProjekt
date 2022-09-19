@@ -42,8 +42,4 @@ public class Database {
         return searchResults;
     }
 
-    /*// returns arraylist of the matching search results
-    public ArrayList<Superhero> getSearchResults() {
-        return searchResults;
-    }*/
 }
