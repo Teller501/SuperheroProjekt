@@ -191,7 +191,7 @@ public class UserInterface {
                         System.out.println("Er menneske: " + searchResults.get(superheroChoice-1).isHuman());
                         System.out.println("Styrke: " + searchResults.get(superheroChoice-1).getPower()+"\n");
                     }
-                    catch (IndexOutOfBoundsException e){
+                    catch (IndexOutOfBoundsException | NumberFormatException e){
                         System.out.println("Ugyldigt input, prøv igen");
                         inputError = true;
                     }
@@ -260,7 +260,7 @@ public class UserInterface {
                         }
                         inputError = false;
                     }
-                    catch(IndexOutOfBoundsException e){
+                    catch(IndexOutOfBoundsException | NumberFormatException e){
                         System.out.println("Ugyldigt input, prøv igen");
                         inputError = true;
                     }
