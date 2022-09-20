@@ -8,7 +8,7 @@ public class UserInterface {
     public Database database = new Database(); // Declaring database object
 
     public void start(){
-        database.createTestData(); // NOTE: Test Data, fjern når færdig
+        //database.createTestData(); // NOTE: Test Data, fjern når færdig
         printWelcome();
     }
 
@@ -36,8 +36,8 @@ public class UserInterface {
                 }
                 catch(InputMismatchException e){
                     System.out.println("Ugyldig input prøv venligst igen!");
-                    keyb.nextLine();
                     inputError = true;
+                    keyb.nextLine();
                 }
             }while(inputError == true);
         }

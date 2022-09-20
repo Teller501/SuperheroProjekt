@@ -7,20 +7,21 @@ public class Database {
 
 
     // TEST DATA - Delete when done
-    public void createTestData(){
+    /*public void createTestData(){
         createSuperHero("Bruce Wayne", "Batman", 2001, "Rig", true,2);
         createSuperHero("Tony Stark", "Iron Man", 1998, "Flyve", true,2);
         createSuperHero("Ved ikke", "Black Panther", 2001, "Rig", true,2);
         createSuperHero("Ved ikke", "Iron Panther", 2001, "Rig", true,2);
         createSuperHero("Ved ikke", "Superman", 2001, "Rig", true,2);
-    }
+    }*/
 
     // creating superhero from parameters
-    public void createSuperHero(String realName, String heroName,
-                                int creationYear, String superPower, boolean isHuman, double power){
+    public Superhero createSuperHero(String realName, String heroName,
+                                     int creationYear, String superPower, boolean isHuman, double power){
         Superhero newSuperHero = new Superhero(realName, heroName, creationYear, superPower, isHuman, power);
         superheroes.add(newSuperHero);
 
+        return newSuperHero;
     }
 
     // getter for superhero ArrayList
