@@ -208,66 +208,69 @@ public class UserInterface {
         ArrayList<Superhero> searchResults = database.searchForSuperhero(searchTerm);
 
 
-        // Printing out all superheroes matching search term
-        int index = 1;
-        for (Superhero searchResult : searchResults){
-            if (searchResults.isEmpty()){
-                System.out.println("Ingen fundet");
-            }else {
+
+        if (searchResults.isEmpty()){
+            System.out.println("Ingen fundet");
+        }else {
+            // Printing out all superheroes matching search term
+            int index = 1;
+            for (Superhero searchResult : searchResults){
                 System.out.println(index++ + ": "+searchResult.getHeroName());
-
-                System.out.println("Vælg superhelten du vil redigere: ");
-
-                int superheroChoice = 1;
-                boolean inputError = false;
-                do {
-                    try{
-                        superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero to update
-                        Superhero editSuperhero = searchResults.get(superheroChoice-1);
-                        System.out.println("Redigere: " + editSuperhero.getHeroName());
-
-                        System.out.println("------------------------------------");
-
-                        System.out.println("Indtast data der skal ændres og klik ENTER. Skal data ikke ændres, klik blot ENTER.");
-
-                        System.out.println("Navn: " + editSuperhero.getHeroName());
-                        String newHeroName = keyb.nextLine();
-                        if (!newHeroName.isEmpty()){ // if the input is not empty, set new data
-                            editSuperhero.setHeroName(newHeroName);
-                        }
-
-                        System.out.println("Superkræft(er): " + editSuperhero.getSuperPower());
-                        String newSuperPower = keyb.nextLine();
-                        if (!newSuperPower.isEmpty()){ // if the input is not empty, set new data
-                            editSuperhero.setSuperPower(newSuperPower);
-                        }
-
-                        System.out.println("Rigtige navn: " + editSuperhero.getRealName());
-                        String newRealName = keyb.nextLine();
-                        if (!newRealName.isEmpty()){ // if the input is not empty, set new data
-                            editSuperhero.setRealName(newRealName);
-                        }
-
-                        System.out.println("Styrke: " + editSuperhero.getPower());
-                        String newPower = keyb.nextLine();
-                        if (!newPower.isEmpty()){ // if the input is not empty, set new data
-                            editSuperhero.setPower(newPower);
-                        }
-
-                        System.out.println("Oprindelsesår: " + editSuperhero.getCreationYear());
-                        String newCreationYear = keyb.nextLine();
-                        if (!newCreationYear.isEmpty()){ // if the input is not empty, set new data
-                            editSuperhero.setCreationYear(newCreationYear);
-                        }
-                        inputError = false;
-                    }
-                    catch(IndexOutOfBoundsException | NumberFormatException e){
-                        System.out.println("Ugyldigt input, prøv igen");
-                        inputError = true;
-                    }
-                }while(inputError == true);
             }
+
+
+            System.out.println("Vælg superhelten du vil redigere: ");
+
+            int superheroChoice = 1;
+            boolean inputError = false;
+            do {
+                try{
+                    superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero to update
+                    Superhero editSuperhero = searchResults.get(superheroChoice-1);
+                    System.out.println("Redigere: " + editSuperhero.getHeroName());
+
+                    System.out.println("------------------------------------");
+
+                    System.out.println("Indtast data der skal ændres og klik ENTER. Skal data ikke ændres, klik blot ENTER.");
+
+                    System.out.println("Navn: " + editSuperhero.getHeroName());
+                    String newHeroName = keyb.nextLine();
+                    if (!newHeroName.isEmpty()){ // if the input is not empty, set new data
+                        editSuperhero.setHeroName(newHeroName);
+                    }
+
+                    System.out.println("Superkræft(er): " + editSuperhero.getSuperPower());
+                    String newSuperPower = keyb.nextLine();
+                    if (!newSuperPower.isEmpty()){ // if the input is not empty, set new data
+                        editSuperhero.setSuperPower(newSuperPower);
+                    }
+
+                    System.out.println("Rigtige navn: " + editSuperhero.getRealName());
+                    String newRealName = keyb.nextLine();
+                    if (!newRealName.isEmpty()){ // if the input is not empty, set new data
+                        editSuperhero.setRealName(newRealName);
+                    }
+
+                    System.out.println("Styrke: " + editSuperhero.getPower());
+                    String newPower = keyb.nextLine();
+                    if (!newPower.isEmpty()){ // if the input is not empty, set new data
+                        editSuperhero.setPower(newPower);
+                    }
+
+                    System.out.println("Oprindelsesår: " + editSuperhero.getCreationYear());
+                    String newCreationYear = keyb.nextLine();
+                    if (!newCreationYear.isEmpty()){ // if the input is not empty, set new data
+                        editSuperhero.setCreationYear(newCreationYear);
+                    }
+                    inputError = false;
+                }
+                catch(IndexOutOfBoundsException | NumberFormatException e){
+                    System.out.println("Ugyldigt input, prøv igen");
+                    inputError = true;
+                }
+            }while(inputError == true);
         }
+
 
 
 
