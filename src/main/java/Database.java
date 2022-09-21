@@ -35,7 +35,7 @@ public class Database {
         // Loop through arraylist of superheroes, return if matching searchTerm
         for (Superhero superhero : superheroes){
             String name = superhero.getHeroName().toLowerCase(); // making all characters in superhero name lower case
-            if (name.contains(searchTerm.toLowerCase())){ // if superhero contains searchTerm, add superhero to arraylist
+            if (name.contains(searchTerm.toLowerCase().trim())){ // if superhero contains searchTerm, add superhero to arraylist
                 searchResults.add(superhero);
             }
         }

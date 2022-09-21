@@ -7,13 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DatabaseTest {
 
-    Database database;
+    private Database database;
 
     @BeforeEach
     public void setup() {
         database = new Database();
     }
-
 
 
     @Test
@@ -49,53 +48,69 @@ class DatabaseTest {
 
     @Test
     void searchForZeroSuperhero() {
+        ArrayList<Superhero> results = database.searchForSuperhero("man");
 
-        //Arrange
-        ArrayList<Superhero> expected = new ArrayList<>(1);
+        int expected = 0;
 
-        //act
-        ArrayList<Superhero> actual = database.searchForSuperhero("man");
+        int actual = results.size();
 
-        //Assert
         assertEquals(expected,actual);
     }
 
     @Test
     void searchForOneSuperhero() {
         //Arrange
-        Superhero s1 = database.createSuperHero("Bruce Wayne", "Batman", 1939, "None", true, 2);
+        database.createSuperHero("Bruce Wayne", "Batman", 1939, "None", true, 2);
+        ArrayList<Superhero> results = database.searchForSuperhero("man");
 
+        int expected = 1;
 
-        ArrayList<Superhero> expected = new ArrayList<>(1);
+        int actual = results.size();
 
-        expected.add(s1);
-
-
-        //act
-        ArrayList<Superhero> actual = database.searchForSuperhero("man");
-
-        //Assert
         assertEquals(expected,actual);
     }
 
     @Test
     void searchForMultipleSuperheroes() {
         //Arrange
-        Superhero s1 = database.createSuperHero("Bruce Wayne", "Batman", 1939, "None", true, 2);
-        Superhero s2 = database.createSuperHero("Clark Kent", "Superman", 1938, "Superhuman strength", true, 4);
-        Superhero s3 = database.createSuperHero("Peter Parker", "Spider-Man", 1962, "Spider-Sense", true, 3);
-        Superhero s4 = database.createSuperHero("Diana Prince", "Wonder Woman", 1941, "Flight", true, 2.5);
-        ArrayList<Superhero> expected = new ArrayList<>(4);
-
-        expected.add(s1);
-        expected.add(s2);
-        expected.add(s3);
-        expected.add(s4);
+        database.createSuperHero("Bruce Wayne", "Batman", 1939, "None", true, 2);
+        database.createSuperHero("Clark Kent", "Superman", 1938, "Superhuman strength", true, 4);
+        database.createSuperHero("Peter Parker", "Spider-Man", 1962, "Spider-Sense", true, 3);
+        database.createSuperHero("Diana Prince", "Wonder Woman", 1941, "Flight", true, 2.5);
 
         //act
-        ArrayList<Superhero> actual = database.searchForSuperhero("man");
+        ArrayList<Superhero> results = database.searchForSuperhero("man");
+
+        int expected = 4;
+        int actual = results.size();
 
         //Assert
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    void searchForCase() {
+        //Arrange
+        database.createSuperHero("Bruce Wayne", "Batman", 1939, "None", true, 2);
+        ArrayList<Superhero> results = database.searchForSuperhero("BaTmAn");
+
+        int expected = 1;
+
+        int actual = results.size();
+
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    void searchForWhitespace() {
+        //Arrange
+        database.createSuperHero("Bruce Wayne", "Batman", 1939, "None", true, 2);
+        ArrayList<Superhero> results = database.searchForSuperhero("  Batman  ");
+
+        int expected = 1;
+
+        int actual = results.size();
+
         assertEquals(expected,actual);
     }
 }
