@@ -15,18 +15,21 @@ public class UserInterface {
     public void printWelcome(){
 
 
-        // Welcome and menu
-        System.out.println("Velkommen til kollektionen af superhelte!");
-        System.out.println("1. Opret superhelt");
-        System.out.println("2. Se liste af oprettede superhelte");
-        System.out.println("3. Søg efter superhelt");
-        System.out.println("4. Rediger superhelt");
-        System.out.println("9. Afslut");
+
 
         // Input for menu choice
         int menuInput = 0;
         boolean inputError;
         while(menuInput != 9){
+            // Welcome and menu
+            System.out.println("Velkommen til kollektionen af superhelte!");
+            System.out.println("1. Opret superhelt");
+            System.out.println("2. Se liste af oprettede superhelte");
+            System.out.println("3. Søg efter superhelt");
+            System.out.println("4. Rediger superhelt");
+            System.out.println("5. Slet superhelt");
+            System.out.println("9. Afslut");
+
             do {
                 try{
                     menuInput = keyb.nextInt();
@@ -45,26 +48,20 @@ public class UserInterface {
 
     public void handleMenuInput(int menuInput) {
         // Switch-statement handling userinput and calling methods
-        switch(menuInput){
-            case 1:
-                createSuperHero();
-                break;
-            case 2:
-                printSuperHero();
-                break;
-            case 3:
-                searchSuperhero();
-                break;
-            case 4:
-                updateSuperhero();
-            case 9:
+        switch(menuInput) {
+            case 1 -> createSuperHero();
+            case 2 -> printSuperHero();
+            case 3 -> searchSuperhero();
+            case 4 -> updateSuperhero();
+            case 5 -> deleteSuperhero();
+            case 9 -> {
                 System.out.println("Afslutter programmet...");
                 System.exit(1); // Terminating program
-                break;
-            default:
-                System.out.println("Ugyldigt Input\n"); // by default if none of the above is input, print error
-                printWelcome(); // Return to menu
-                break;
+            }
+            default -> System.out.println("Ugyldigt Input\n"); // by default if none of the above is input, print error
+
+
+
         }
     }
 
@@ -231,58 +228,97 @@ public class UserInterface {
 
             int superheroChoice = 1;
             boolean inputError = false;
+            superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero to update
+            Superhero editSuperhero = searchResults.get(superheroChoice-1);
+            System.out.println("Redigere: " + editSuperhero.getHeroName());
+
+            System.out.println("------------------------------------");
+
+            System.out.println("Indtast data der skal ændres og klik ENTER. Skal data ikke ændres, klik blot ENTER.");
+
+            System.out.println("Navn: " + editSuperhero.getHeroName());
+            String newHeroName = keyb.nextLine();
+            if (!newHeroName.isEmpty()){ // if the input is not empty, set new data
+                editSuperhero.setHeroName(newHeroName);
+            }
+
+            System.out.println("Superkræft(er): " + editSuperhero.getSuperPower());
+            String newSuperPower = keyb.nextLine();
+            if (!newSuperPower.isEmpty()){ // if the input is not empty, set new data
+                editSuperhero.setSuperPower(newSuperPower);
+            }
+
+            System.out.println("Rigtige navn: " + editSuperhero.getRealName());
+            String newRealName = keyb.nextLine();
+            if (!newRealName.isEmpty()){ // if the input is not empty, set new data
+                editSuperhero.setRealName(newRealName);
+            }
+
+            System.out.println("Styrke: " + editSuperhero.getPower());
+
             do {
                 try{
-                    superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero to update
-                    Superhero editSuperhero = searchResults.get(superheroChoice-1);
-                    System.out.println("Redigere: " + editSuperhero.getHeroName());
-
-                    System.out.println("------------------------------------");
-
-                    System.out.println("Indtast data der skal ændres og klik ENTER. Skal data ikke ændres, klik blot ENTER.");
-
-                    System.out.println("Navn: " + editSuperhero.getHeroName());
-                    String newHeroName = keyb.nextLine();
-                    if (!newHeroName.isEmpty()){ // if the input is not empty, set new data
-                        editSuperhero.setHeroName(newHeroName);
-                    }
-
-                    System.out.println("Superkræft(er): " + editSuperhero.getSuperPower());
-                    String newSuperPower = keyb.nextLine();
-                    if (!newSuperPower.isEmpty()){ // if the input is not empty, set new data
-                        editSuperhero.setSuperPower(newSuperPower);
-                    }
-
-                    System.out.println("Rigtige navn: " + editSuperhero.getRealName());
-                    String newRealName = keyb.nextLine();
-                    if (!newRealName.isEmpty()){ // if the input is not empty, set new data
-                        editSuperhero.setRealName(newRealName);
-                    }
-
-                    System.out.println("Styrke: " + editSuperhero.getPower());
                     String newPower = keyb.nextLine();
                     if (!newPower.isEmpty()){ // if the input is not empty, set new data
                         editSuperhero.setPower(newPower);
                     }
+                    inputError = false;
+                }
+                catch (NumberFormatException e){
+                    System.out.println("Du skal indtaste et tal (f.eks. 2.3)");
+                    inputError = true;
+                }
+            }while (inputError == true);
 
-                    System.out.println("Oprindelsesår: " + editSuperhero.getCreationYear());
-                    String newCreationYear = keyb.nextLine();
+
+            System.out.println("Oprindelsesår: " + editSuperhero.getCreationYear());
+            do {
+                try{
+                    String newCreationYear = keyb.nextLine().trim();
                     if (!newCreationYear.isEmpty()){ // if the input is not empty, set new data
                         editSuperhero.setCreationYear(newCreationYear);
                     }
                     inputError = false;
-                }
-                catch(IndexOutOfBoundsException | NumberFormatException e){
-                    System.out.println("Ugyldigt input, prøv igen");
+                }catch(NumberFormatException e){
+                    System.out.println("Du skal indtaste et tal (f.eks. 1998)");
                     inputError = true;
                 }
             }while(inputError == true);
+
         }
+    }
+
+    public void deleteSuperhero(){
+        System.out.println("------------------------------------");
+        System.out.println("Indtast søgeord: ");
+        String searchTerm = keyb.nextLine();
+
+        // adding searchTerm from input to database for searching
+        ArrayList<Superhero> searchResults = database.searchForSuperhero(searchTerm);
 
 
 
+        if (searchResults.isEmpty()){
+            System.out.println("Ingen fundet");
+        }else {
+            // Printing out all superheroes matching search term
+            int index = 1;
+            for (Superhero searchResult : searchResults) {
+                System.out.println(index++ + ": " + searchResult.getHeroName());
+            }
 
 
+            System.out.println("Vælg superhelten du vil slette: ");
 
+            int superheroChoice = 1;
+            boolean inputError = false;
+            superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero to update
+            Superhero deleteSuperhero = searchResults.get(superheroChoice - 1);
+
+
+            database.deleteSuperhero(deleteSuperhero);
+            System.out.println(deleteSuperhero.getHeroName() + " er slettet fra databasen");
+
+        }
     }
 }

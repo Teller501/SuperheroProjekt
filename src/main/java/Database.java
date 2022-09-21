@@ -45,9 +45,8 @@ public class Database {
 
     public boolean deleteSuperhero(Superhero superhero) {
 
+        getAllSuperheroes().remove(superhero);
         boolean success = true;
-
-        // TODO: Fake indhold skal erstattes med rigtig kode
 
         return success;
     }
