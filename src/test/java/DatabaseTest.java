@@ -11,7 +11,12 @@ class DatabaseTest {
 
     @BeforeEach
     public void setup() {
+
         database = new Database();
+        database.createSuperHero("Bruce Wayne", "Batman", 1939, "None", true, 2);
+        database.createSuperHero("Clark Kent", "Superman", 1938, "Superhuman strength", true, 4);
+        database.createSuperHero("Peter Parker", "Spider-Man", 1962, "Spider-Sense", true, 3);
+        database.createSuperHero("Diana Prince", "Wonder Woman", 1941, "Flight", true, 2.5);
     }
 
 
@@ -112,5 +117,26 @@ class DatabaseTest {
         int actual = results.size();
 
         assertEquals(expected,actual);
+    }
+
+    @Test
+    void deleteSuperhero(){
+        ArrayList<Superhero> results = database.getAllSuperheroes();
+        Superhero superhero = database.getAllSuperheroes().get(0);
+        boolean actualResult = database.deleteSuperhero( superhero );
+
+        boolean expectedResult = true;
+
+
+        assertEquals(actualResult, expectedResult);
+
+
+        int expectedSize = results.size() - 1;
+
+        ArrayList<Superhero> resultsAfterDelete = database.getAllSuperheroes();
+
+        int actualSize = resultsAfterDelete.size();
+
+        assertEquals(expectedSize, actualSize);
     }
 }

@@ -43,4 +43,12 @@ public class Database {
         return searchResults;
     }
 
+    public boolean deleteSuperhero(Superhero superhero) {
+
+        boolean success = true;
+
+        // TODO: Fake indhold skal erstattes med rigtig kode
+
+        return success;
+    }
 }
