@@ -4,8 +4,8 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class UserInterface {
-    public Scanner keyb = new Scanner(System.in).useLocale(Locale.ENGLISH); // Declaring scanner object
-    public Database database = new Database(); // Declaring database object
+    private Scanner keyb = new Scanner(System.in).useLocale(Locale.ENGLISH); // Declaring scanner object
+    private Database database = new Database(); // Declaring database object
 
     public void start(){
         database.createTestData(); // NOTE: Test Data, fjern når færdig
@@ -77,7 +77,15 @@ public class UserInterface {
         String realName = keyb.nextLine(); // Inputting real name of superhero
 
         System.out.println("Indtast superheltens heltenavn:");
-        String heroName = keyb.nextLine(); // Inputting hero name of superhero
+        String heroName = "";
+
+        while(heroName.isEmpty()){
+            heroName = keyb.nextLine(); // Inputting hero name of superhero
+            if (heroName.isEmpty()){
+                System.out.println("Du skal indtaste et navn");
+            }
+        }
+
 
         System.out.println("Hvilket superkræfter besidder superhelten?");
         String superPower = keyb.nextLine(); // Inputting superpowers of hero
