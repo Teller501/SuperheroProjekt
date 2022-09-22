@@ -9,7 +9,7 @@ public class Superhero {
 
 
     // constructor
-    public Superhero(String realName, String heroName, int creationYear, String superPower, boolean isHuman, double power){
+    public Superhero(String realName, String heroName, int creationYear, String superPower, boolean isHuman, double power) {
         this.realName = realName;
         this.heroName = heroName;
         this.creationYear = creationYear;
@@ -20,9 +20,9 @@ public class Superhero {
 
     // Printing out if heroName is empty
     public String getHeroName() {
-        if (heroName.isEmpty()){
+        if (heroName.isEmpty()) {
             return "Intet superhelte navn";
-        }else {
+        } else {
             return heroName;
         }
     }
@@ -45,9 +45,9 @@ public class Superhero {
 
     // Returning different than "true" or "false" when printing isHuman boolean
     public String isHuman() {
-        if (isHuman == true){
+        if (isHuman == true) {
             return "Ja";
-        }else {
+        } else {
             return "Nej";
         }
     }

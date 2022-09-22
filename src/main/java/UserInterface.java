@@ -7,20 +7,17 @@ public class UserInterface {
     private Scanner keyb = new Scanner(System.in).useLocale(Locale.ENGLISH); // Declaring scanner object
     private Database database = new Database(); // Declaring database object
 
-    public void start(){
-        database.createTestData(); // NOTE: Test Data, fjern når færdig
+    public void start() {
         printWelcome();
     }
 
-    public void printWelcome(){
-
-
+    public void printWelcome() {
 
 
         // Input for menu choice
         int menuInput = 0;
         boolean inputError;
-        while(menuInput != 9){
+        while (menuInput != 9) {
             // Welcome and menu
             System.out.println("Velkommen til kollektionen af superhelte!");
             System.out.println("1. Opret superhelt");
@@ -30,25 +27,26 @@ public class UserInterface {
             System.out.println("5. Slet superhelt");
             System.out.println("9. Afslut");
 
+            // DO-while loop that keeps looping if input error is true
             do {
-                try{
+                // Try Catch that takes input from user in the menu, and handling if the input is not an int
+                try {
                     menuInput = keyb.nextInt();
                     keyb.nextLine();
                     handleMenuInput(menuInput);
                     inputError = false;
-                }
-                catch(InputMismatchException e){
+                } catch (InputMismatchException e) {
                     System.out.println("Ugyldig input prøv venligst igen!");
                     inputError = true;
                     keyb.nextLine();
                 }
-            }while(inputError == true);
+            } while (inputError);
         }
     }
 
     public void handleMenuInput(int menuInput) {
         // Switch-statement handling userinput and calling methods
-        switch(menuInput) {
+        switch (menuInput) {
             case 1 -> createSuperHero();
             case 2 -> printSuperHero();
             case 3 -> searchSuperhero();
@@ -61,12 +59,11 @@ public class UserInterface {
             default -> System.out.println("Ugyldigt Input\n"); // by default if none of the above is input, print error
 
 
-
         }
     }
 
 
-    public void createSuperHero(){
+    public void createSuperHero() {
 
         System.out.println("Opret en superhelt");
 
@@ -76,9 +73,10 @@ public class UserInterface {
         System.out.println("Indtast superheltens heltenavn:");
         String heroName = "";
 
-        while(heroName.isEmpty()){
+        // A while loop that keeps looping if user does not input the name of a hero
+        while (heroName.isEmpty()) {
             heroName = keyb.nextLine(); // Inputting hero name of superhero
-            if (heroName.isEmpty()){
+            if (heroName.isEmpty()) {
                 System.out.println("Du skal indtaste et navn");
             }
         }
@@ -89,33 +87,36 @@ public class UserInterface {
 
         int creationYear = 0;
         boolean creationYearInputError = false;
+        // Handling input error on creationYear
         do {
-            try{
+            // Catching NumberFormatException if user does not input an int
+            try {
                 System.out.println("Hvornår blev superhelten skabt?");
                 creationYear = Integer.parseInt(keyb.nextLine()); // Inputting creation year of superhero
                 creationYearInputError = false;
-            }
-            catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Ugyldigt input, prøv igen");
                 creationYearInputError = true;
             }
 
-        }while(creationYearInputError == true);
+        } while (creationYearInputError == true);
 
         double power = 0;
         boolean powerInputError = false;
+
+        // Handling input error on power
         do {
-            try{
+            // Catching NumberFormatException if user does not input an int
+            try {
                 System.out.println("Hvor stor en kræft har helten (hvis 1 er for et menneske) ");
                 power = Double.parseDouble(keyb.nextLine()); // Inputting power of superhero
                 powerInputError = false;
-            }
-            catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Ugyldigt input, prøv igen");
                 powerInputError = true;
             }
 
-        }while(powerInputError == true);
+        } while (powerInputError);
 
         // boolean for checking if superhero is human
         boolean isHuman = false;
@@ -127,9 +128,9 @@ public class UserInterface {
             humanStatus = keyb.next().charAt(0);
             System.out.println();
 
-            if (humanStatus == 'j') {
+            if (humanStatus == 'j') { // if input is j then the hero is human
                 isHuman = true;
-            } else if (humanStatus == 'n') {
+            } else if (humanStatus == 'n') { // if input is n then the hero is not human
                 isHuman = false;
             } else {
                 System.out.println("ugyldigt input");
@@ -141,17 +142,17 @@ public class UserInterface {
 
     }
 
-    public void printSuperHero(){
+    public void printSuperHero() {
         System.out.println("Liste af superhelte");
         System.out.println("------------------------------------");
 
         ArrayList<Superhero> allSuperheroes = database.getAllSuperheroes();
 
         // Checking if ArrayList is empty
-        if (allSuperheroes.isEmpty()){ // If empty, print message
+        if (allSuperheroes.isEmpty()) { // If empty, print message
             System.out.println("Ingen superhelte i databasen.");
             System.out.println("------------------------------------");
-        }else {
+        } else {
             // Looping through ArrayList of superheroes, printing out in list
             for (Superhero superhero : allSuperheroes) {
                 System.out.println("Superhelte navn: " + superhero.getHeroName());
@@ -175,33 +176,32 @@ public class UserInterface {
 
         // Printing out all superheroes matching search term
         int index = 1;
-            if (searchResults.isEmpty()){
-                System.out.println("Ingen fundet");
-            }else {
-                for (Superhero searchResult : searchResults) {
-                    System.out.println(index++ + ": " + searchResult.getHeroName());
-                }
-                System.out.println("Vælg superhelten du vil have skrevet ud: ");
-                int superheroChoice = 1;
-                boolean inputError = false;
-                do{
-                    try{
-                        superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero you want to look at
-                        inputError = false;
-                        // Printing out the selected hero
-                        System.out.println("Superhelte navn: " + searchResults.get(superheroChoice-1).getHeroName());
-                        System.out.println("Superkraft: " + searchResults.get(superheroChoice-1).getSuperPower());
-                        System.out.println("Virkeligt navn: " + searchResults.get(superheroChoice-1).getRealName());
-                        System.out.println("Oprindelsesår: " + searchResults.get(superheroChoice-1).getCreationYear());
-                        System.out.println("Er menneske: " + searchResults.get(superheroChoice-1).isHuman());
-                        System.out.println("Styrke: " + searchResults.get(superheroChoice-1).getPower()+"\n");
-                    }
-                    catch (IndexOutOfBoundsException | NumberFormatException e){
-                        System.out.println("Ugyldigt input, prøv igen");
-                        inputError = true;
-                    }
-                }while(inputError == true);
+        if (searchResults.isEmpty()) {
+            System.out.println("Ingen fundet");
+        } else {
+            for (Superhero searchResult : searchResults) {
+                System.out.println(index++ + ": " + searchResult.getHeroName());
             }
+            System.out.println("Vælg superhelten du vil have skrevet ud: ");
+            int superheroChoice = 1;
+            boolean inputError = false;
+            do {
+                try {
+                    superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero you want to look at
+                    inputError = false;
+                    // Printing out the selected hero
+                    System.out.println("Superhelte navn: " + searchResults.get(superheroChoice - 1).getHeroName());
+                    System.out.println("Superkraft: " + searchResults.get(superheroChoice - 1).getSuperPower());
+                    System.out.println("Virkeligt navn: " + searchResults.get(superheroChoice - 1).getRealName());
+                    System.out.println("Oprindelsesår: " + searchResults.get(superheroChoice - 1).getCreationYear());
+                    System.out.println("Er menneske: " + searchResults.get(superheroChoice - 1).isHuman());
+                    System.out.println("Styrke: " + searchResults.get(superheroChoice - 1).getPower() + "\n");
+                } catch (IndexOutOfBoundsException | NumberFormatException e) {
+                    System.out.println("Ugyldigt input, prøv igen");
+                    inputError = true;
+                }
+            } while (inputError == true);
+        }
     }
 
     public void updateSuperhero() {
@@ -213,14 +213,13 @@ public class UserInterface {
         ArrayList<Superhero> searchResults = database.searchForSuperhero(searchTerm);
 
 
-
-        if (searchResults.isEmpty()){
+        if (searchResults.isEmpty()) {
             System.out.println("Ingen fundet");
-        }else {
+        } else {
             // Printing out all superheroes matching search term
             int index = 1;
-            for (Superhero searchResult : searchResults){
-                System.out.println(index++ + ": "+searchResult.getHeroName());
+            for (Superhero searchResult : searchResults) {
+                System.out.println(index++ + ": " + searchResult.getHeroName());
             }
 
 
@@ -229,7 +228,7 @@ public class UserInterface {
             int superheroChoice = 1;
             boolean inputError = false;
             superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero to update
-            Superhero editSuperhero = searchResults.get(superheroChoice-1);
+            Superhero editSuperhero = searchResults.get(superheroChoice - 1);
             System.out.println("Redigere: " + editSuperhero.getHeroName());
 
             System.out.println("------------------------------------");
@@ -238,57 +237,56 @@ public class UserInterface {
 
             System.out.println("Navn: " + editSuperhero.getHeroName());
             String newHeroName = keyb.nextLine();
-            if (!newHeroName.isEmpty()){ // if the input is not empty, set new data
+            if (!newHeroName.isEmpty()) { // if the input is not empty, set new data
                 editSuperhero.setHeroName(newHeroName);
             }
 
             System.out.println("Superkræft(er): " + editSuperhero.getSuperPower());
             String newSuperPower = keyb.nextLine();
-            if (!newSuperPower.isEmpty()){ // if the input is not empty, set new data
+            if (!newSuperPower.isEmpty()) { // if the input is not empty, set new data
                 editSuperhero.setSuperPower(newSuperPower);
             }
 
             System.out.println("Rigtige navn: " + editSuperhero.getRealName());
             String newRealName = keyb.nextLine();
-            if (!newRealName.isEmpty()){ // if the input is not empty, set new data
+            if (!newRealName.isEmpty()) { // if the input is not empty, set new data
                 editSuperhero.setRealName(newRealName);
             }
 
             System.out.println("Styrke: " + editSuperhero.getPower());
 
             do {
-                try{
+                try {
                     String newPower = keyb.nextLine();
-                    if (!newPower.isEmpty()){ // if the input is not empty, set new data
+                    if (!newPower.isEmpty()) { // if the input is not empty, set new data
                         editSuperhero.setPower(newPower);
                     }
                     inputError = false;
-                }
-                catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     System.out.println("Du skal indtaste et tal (f.eks. 2.3)");
                     inputError = true;
                 }
-            }while (inputError == true);
+            } while (inputError == true);
 
 
             System.out.println("Oprindelsesår: " + editSuperhero.getCreationYear());
             do {
-                try{
+                try {
                     String newCreationYear = keyb.nextLine().trim();
-                    if (!newCreationYear.isEmpty()){ // if the input is not empty, set new data
+                    if (!newCreationYear.isEmpty()) { // if the input is not empty, set new data
                         editSuperhero.setCreationYear(newCreationYear);
                     }
                     inputError = false;
-                }catch(NumberFormatException e){
+                } catch (NumberFormatException e) {
                     System.out.println("Du skal indtaste et tal (f.eks. 1998)");
                     inputError = true;
                 }
-            }while(inputError == true);
+            } while (inputError == true);
 
         }
     }
 
-    public void deleteSuperhero(){
+    public void deleteSuperhero() {
         System.out.println("------------------------------------");
         System.out.println("Indtast søgeord: ");
         String searchTerm = keyb.nextLine();
@@ -297,10 +295,9 @@ public class UserInterface {
         ArrayList<Superhero> searchResults = database.searchForSuperhero(searchTerm);
 
 
-
-        if (searchResults.isEmpty()){
+        if (searchResults.isEmpty()) {
             System.out.println("Ingen fundet");
-        }else {
+        } else {
             // Printing out all superheroes matching search term
             int index = 1;
             for (Superhero searchResult : searchResults) {
@@ -312,12 +309,19 @@ public class UserInterface {
 
             int superheroChoice = 1;
             boolean inputError = false;
-            superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero to update
-            Superhero deleteSuperhero = searchResults.get(superheroChoice - 1);
+            do {
+                try {
+                    superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero to delete
+                    Superhero deleteSuperhero = searchResults.get(superheroChoice - 1);
 
-
-            database.deleteSuperhero(deleteSuperhero);
-            System.out.println(deleteSuperhero.getHeroName() + " er slettet fra databasen");
+                    database.deleteSuperhero(deleteSuperhero);
+                    System.out.println(deleteSuperhero.getHeroName() + " er slettet fra databasen");
+                    inputError = false;
+                } catch (NumberFormatException e) {
+                    System.out.println("Ugyldigt input, indtast venligst tallet på superhelten du ønsker slettet.");
+                    inputError = true;
+                }
+            } while (inputError);
 
         }
     }
