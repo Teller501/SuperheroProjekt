@@ -45,7 +45,7 @@ public class Superhero {
 
     // Returning different than "true" or "false" when printing isHuman boolean
     public String isHuman() {
-        if (isHuman == true) {
+        if (isHuman) {
             return "Ja";
         } else {
             return "Nej";

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class UserInterface {
     private Scanner keyb = new Scanner(System.in).useLocale(Locale.ENGLISH); // Declaring scanner object
-    private Database database = new Database(); // Declaring database object
+    private Controller controller = new Controller(); // Declaring database object
 
     public void start() {
         printWelcome();
@@ -99,7 +99,7 @@ public class UserInterface {
                 creationYearInputError = true;
             }
 
-        } while (creationYearInputError == true);
+        } while (creationYearInputError);
 
         double power = 0;
         boolean powerInputError = false;
@@ -138,7 +138,7 @@ public class UserInterface {
         } while (humanStatus != 'j' && humanStatus != 'n');
 
         // Creating superhero from database class
-        database.createSuperHero(realName, heroName, creationYear, superPower, isHuman, power);
+        controller.createSuperHero(realName, heroName, creationYear, superPower, isHuman, power);
 
     }
 
@@ -146,7 +146,7 @@ public class UserInterface {
         System.out.println("Liste af superhelte");
         System.out.println("------------------------------------");
 
-        ArrayList<Superhero> allSuperheroes = database.getAllSuperheroes();
+        ArrayList<Superhero> allSuperheroes = controller.getAllSuperheroes();
 
         // Checking if ArrayList is empty
         if (allSuperheroes.isEmpty()) { // If empty, print message
@@ -172,7 +172,7 @@ public class UserInterface {
         String searchTerm = keyb.nextLine();
 
         // adding searchTerm from input to database for searching
-        ArrayList<Superhero> searchResults = database.searchForSuperhero(searchTerm);
+        ArrayList<Superhero> searchResults = controller.searchForSuperhero(searchTerm);
 
         // Printing out all superheroes matching search term
         int index = 1;
@@ -200,7 +200,7 @@ public class UserInterface {
                     System.out.println("Ugyldigt input, prøv igen");
                     inputError = true;
                 }
-            } while (inputError == true);
+            } while (inputError);
         }
     }
 
@@ -210,7 +210,7 @@ public class UserInterface {
         String searchTerm = keyb.nextLine();
 
         // adding searchTerm from input to database for searching
-        ArrayList<Superhero> searchResults = database.searchForSuperhero(searchTerm);
+        ArrayList<Superhero> searchResults = controller.searchForSuperhero(searchTerm);
 
 
         if (searchResults.isEmpty()) {
@@ -266,7 +266,7 @@ public class UserInterface {
                     System.out.println("Du skal indtaste et tal (f.eks. 2.3)");
                     inputError = true;
                 }
-            } while (inputError == true);
+            } while (inputError);
 
 
             System.out.println("Oprindelsesår: " + editSuperhero.getCreationYear());
@@ -281,7 +281,7 @@ public class UserInterface {
                     System.out.println("Du skal indtaste et tal (f.eks. 1998)");
                     inputError = true;
                 }
-            } while (inputError == true);
+            } while (inputError);
 
         }
     }
@@ -292,7 +292,7 @@ public class UserInterface {
         String searchTerm = keyb.nextLine();
 
         // adding searchTerm from input to database for searching
-        ArrayList<Superhero> searchResults = database.searchForSuperhero(searchTerm);
+        ArrayList<Superhero> searchResults = controller.searchForSuperhero(searchTerm);
 
 
         if (searchResults.isEmpty()) {
@@ -314,7 +314,7 @@ public class UserInterface {
                     superheroChoice = Integer.parseInt(keyb.nextLine()); // input of what superhero to delete
                     Superhero deleteSuperhero = searchResults.get(superheroChoice - 1);
 
-                    database.deleteSuperhero(deleteSuperhero);
+                    controller.deleteSuperhero(deleteSuperhero);
                     System.out.println(deleteSuperhero.getHeroName() + " er slettet fra databasen");
                     inputError = false;
                 } catch (NumberFormatException e) {
