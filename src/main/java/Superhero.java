@@ -18,6 +18,10 @@ public class Superhero {
         this.power = power;
     }
 
+    public Superhero() {
+        //skal være tom til at loade data
+    }
+
     // Printing out if heroName is empty
     public String getHeroName() {
         if (heroName.isEmpty()) {
