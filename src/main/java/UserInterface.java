@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Locale;
@@ -25,6 +26,7 @@ public class UserInterface {
             System.out.println("3. Søg efter superhelt");
             System.out.println("4. Rediger superhelt");
             System.out.println("5. Slet superhelt");
+            System.out.println("6. Gem data");
             System.out.println("9. Afslut");
 
             // DO-while loop that keeps looping if input error is true
@@ -52,6 +54,7 @@ public class UserInterface {
             case 3 -> searchSuperhero();
             case 4 -> updateSuperhero();
             case 5 -> deleteSuperhero();
+            case 6 -> saveData();
             case 9 -> {
                 System.out.println("Afslutter programmet...");
                 System.exit(1); // Terminating program
@@ -60,6 +63,11 @@ public class UserInterface {
 
 
         }
+    }
+
+    private void saveData() {
+        controller.saveData();
+        System.out.println("Data is saved");
     }
 
 
