@@ -25,6 +25,8 @@ public class UserInterface {
             System.out.println("3. Søg efter superhelt");
             System.out.println("4. Rediger superhelt");
             System.out.println("5. Slet superhelt");
+            System.out.println("6. Gem data");
+            System.out.println("7. Load gemt data");
             System.out.println("9. Afslut");
 
             // DO-while loop that keeps looping if input error is true
@@ -52,6 +54,8 @@ public class UserInterface {
             case 3 -> searchSuperhero();
             case 4 -> updateSuperhero();
             case 5 -> deleteSuperhero();
+            case 6 -> saveData();
+            case 7 -> loadData();
             case 9 -> {
                 System.out.println("Afslutter programmet...");
                 System.exit(1); // Terminating program
@@ -62,7 +66,6 @@ public class UserInterface {
         }
     }
 
-
     public void createSuperHero() {
 
         System.out.println("Opret en superhelt");
@@ -71,7 +74,7 @@ public class UserInterface {
         String realName = keyb.nextLine(); // Inputting real name of superhero
 
         System.out.println("Indtast superheltens heltenavn:");
-        String heroName = "";
+        String heroName = keyb.nextLine();
 
         // A while loop that keeps looping if user does not input the name of a hero
         while (heroName.isEmpty()) {
@@ -324,5 +327,15 @@ public class UserInterface {
             } while (inputError);
 
         }
+    }
+
+    private void saveData() {
+        controller.saveData();
+        System.out.println("Data is saved");
+    }
+
+    private void loadData() {
+        controller.loadData();
+        System.out.println("Data loaded");
     }
 }
