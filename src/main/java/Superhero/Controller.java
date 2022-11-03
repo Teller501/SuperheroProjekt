@@ -1,3 +1,5 @@
+package Superhero;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -39,5 +41,9 @@ public class Controller {
             System.out.println("File do not exist");
         }
         
+    }
+
+    public ArrayList<Superhero> sortHeroName(ArrayList<Superhero> allSuperheroes) {
+        return fileHandler.sortHeroName(allSuperheroes);
     }
 }

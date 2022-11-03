@@ -1,3 +1,5 @@
+package Superhero;
+
 public class Superhero {
     // attributes
     private String realName;

@@ -1,8 +1,12 @@
+package Superhero;
+
+import Comparator.HeroNameComparator;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class FileHandler {
@@ -41,6 +45,7 @@ public class FileHandler {
             String line = reader.nextLine();
 
             Superhero dataObjekt = parseCSVLine(line);
+            allSuperheroes.add(dataObjekt);
 
             System.out.println(line);
         }
@@ -58,5 +63,11 @@ public class FileHandler {
         //dataObjekt.isHuman(parts[5]);
 
         return dataObjekt;
+    }
+
+    public ArrayList<Superhero> sortHeroName(ArrayList<Superhero> allSuperheroes){
+        Collections.sort(allSuperheroes, new HeroNameComparator());
+
+        return  allSuperheroes;
     }
 }

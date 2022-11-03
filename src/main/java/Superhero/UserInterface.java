@@ -1,3 +1,6 @@
+package Superhero;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Locale;
@@ -27,6 +30,7 @@ public class UserInterface {
             System.out.println("5. Slet superhelt");
             System.out.println("6. Gem data");
             System.out.println("7. Load gemt data");
+            System.out.println("8. Vis alle superhelte sorteret");
             System.out.println("9. Afslut");
 
             // DO-while loop that keeps looping if input error is true
@@ -56,6 +60,7 @@ public class UserInterface {
             case 5 -> deleteSuperhero();
             case 6 -> saveData();
             case 7 -> loadData();
+            case 8 -> sortHeroes();
             case 9 -> {
                 System.out.println("Afslutter programmet...");
                 System.exit(1); // Terminating program
@@ -337,5 +342,49 @@ public class UserInterface {
     private void loadData() {
         controller.loadData();
         System.out.println("Data loaded");
+    }
+
+    private void sortHeroes(){
+        Scanner scanner = new Scanner(System.in);
+
+        int input = 0;
+        boolean inputError;
+
+        while(input!= 9){
+            // Welcome and menu
+            System.out.println("Sorter superhelte");
+            System.out.println("1. sorter data efter superhelte navn");
+            System.out.println("9. exit");
+            // DO-while loop that keeps looping if input error is true
+            do {
+                // Try Catch that takes input from user in the menu, and handling if the input is not an int
+                try {
+                    input = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (input){
+                        case 1 ->{
+                            ArrayList<Superhero> heroNameList = controller.sortHeroName(controller.getAllSuperheroes());
+
+                            System.out.println("Superhelte sorteret efter superhelte navn:");
+                            System.out.println("------------------------------------");
+                            for (Superhero superhero : heroNameList){
+                                System.out.println("Superhelte navn: " + superhero.getHeroName());
+                                System.out.println("Superkraft: " + superhero.getSuperPower());
+                                System.out.println("Virkeligt navn: " + superhero.getRealName());
+                                System.out.println("Oprindelsesår: " + superhero.getCreationYear());
+                                System.out.println("Er menneske: " + superhero.isHuman());
+                                System.out.println("Styrke: " + superhero.getPower());
+                                System.out.println("------------------------------------");
+                            }
+                        }
+                    }
+                    inputError = false;
+                } catch (InputMismatchException e) {
+                    System.out.println("Ugyldig input prøv venligst igen!");
+                    inputError = true;
+                    scanner.nextLine();
+                }
+            } while (inputError);
+        }
     }
 }
