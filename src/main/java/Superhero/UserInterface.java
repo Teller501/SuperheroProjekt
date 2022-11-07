@@ -348,7 +348,6 @@ public class UserInterface {
 
         int input = 0;
         boolean inputError;
-        String sortInput = "-nothing yet-";
 
         while(input!= 9){
             // Welcome and menu

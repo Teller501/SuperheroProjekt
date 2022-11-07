@@ -7,6 +7,6 @@ import java.util.Comparator;
 public class IsHumanComparator implements Comparator<Superhero> {
     @Override
     public int compare(Superhero s1, Superhero s2) {
-        return s1.isHuman().compareTo(s1.isHuman());
+        return Boolean.valueOf(s1.isHuman()).compareTo(Boolean.valueOf(s2.isHuman())); //TODO: fix compare
     }
 }
