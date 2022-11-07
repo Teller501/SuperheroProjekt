@@ -1,6 +1,6 @@
 package Superhero;
 
-import Comparator.HeroNameComparator;
+import Comparator.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -65,8 +65,15 @@ public class FileHandler {
         return dataObjekt;
     }
 
-    public ArrayList<Superhero> sortHeroName(ArrayList<Superhero> allSuperheroes){
-        Collections.sort(allSuperheroes, new HeroNameComparator());
+    public ArrayList<Superhero> sort(ArrayList<Superhero> allSuperheroes, String sortInput){
+        switch (sortInput){
+            case "heroName" -> Collections.sort(allSuperheroes, new HeroNameComparator());
+            case "realName" -> Collections.sort(allSuperheroes, new RealNameComparator());
+            case "creationYear" -> Collections.sort(allSuperheroes, new CreationYearComparator());
+            case "power" -> Collections.sort(allSuperheroes, new PowerComparator());
+            case "superPower" -> Collections.sort(allSuperheroes, new SuperPowerComparator());
+            case "isHuman" -> Collections.sort(allSuperheroes, new IsHumanComparator());
+        }
 
         return  allSuperheroes;
     }
