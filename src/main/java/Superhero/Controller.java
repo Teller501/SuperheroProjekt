@@ -43,7 +43,7 @@ public class Controller {
         
     }
 
-    public ArrayList<Superhero> sortHeroName(ArrayList<Superhero> allSuperheroes) {
-        return fileHandler.sortHeroName(allSuperheroes);
+    public ArrayList<Superhero> sort(ArrayList<Superhero> allSuperheroes, String sortInput) {
+        return fileHandler.sort(allSuperheroes, sortInput);
     }
 }

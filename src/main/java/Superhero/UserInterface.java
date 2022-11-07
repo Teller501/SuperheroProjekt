@@ -1,6 +1,5 @@
 package Superhero;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Locale;
@@ -349,11 +348,17 @@ public class UserInterface {
 
         int input = 0;
         boolean inputError;
+        String sortInput = "-nothing yet-";
 
         while(input!= 9){
             // Welcome and menu
             System.out.println("Sorter superhelte");
             System.out.println("1. sorter data efter superhelte navn");
+            System.out.println("2. sorter data efter superheltens rigtige navn");
+            System.out.println("3. sorter data efter superheltens oprindelsesår");
+            System.out.println("4. sorter data efter superheltens styrke");
+            System.out.println("5. sorter data efter superheltens superpower");
+            System.out.println("5. sorter data efter superheltens menneskestatus");
             System.out.println("9. exit");
             // DO-while loop that keeps looping if input error is true
             do {
@@ -363,19 +368,46 @@ public class UserInterface {
                     scanner.nextLine();
                     switch (input){
                         case 1 ->{
-                            ArrayList<Superhero> heroNameList = controller.sortHeroName(controller.getAllSuperheroes());
+                            ArrayList<Superhero> heroNameList = controller.sort(controller.getAllSuperheroes(), "heroName");
 
                             System.out.println("Superhelte sorteret efter superhelte navn:");
                             System.out.println("------------------------------------");
-                            for (Superhero superhero : heroNameList){
-                                System.out.println("Superhelte navn: " + superhero.getHeroName());
-                                System.out.println("Superkraft: " + superhero.getSuperPower());
-                                System.out.println("Virkeligt navn: " + superhero.getRealName());
-                                System.out.println("Oprindelsesår: " + superhero.getCreationYear());
-                                System.out.println("Er menneske: " + superhero.isHuman());
-                                System.out.println("Styrke: " + superhero.getPower());
-                                System.out.println("------------------------------------");
-                            }
+                            printSorted(heroNameList);
+                        }
+                        case 2-> {
+                            ArrayList<Superhero> realNameList = controller.sort(controller.getAllSuperheroes(), "realName");
+                            System.out.println("Superhelte sorteret efter rigtige navn:");
+                            System.out.println("------------------------------------");
+
+                            printSorted(realNameList);
+                        }
+                        case 3-> {
+                            ArrayList<Superhero> creationYearList = controller.sort(controller.getAllSuperheroes(), "creationYear");
+                            System.out.println("Superhelte sorteret efter oprindelsesår:");
+                            System.out.println("------------------------------------");
+
+                            printSorted(creationYearList);
+                        }
+                        case 4-> {
+                            ArrayList<Superhero> powerList = controller.sort(controller.getAllSuperheroes(), "power");
+                            System.out.println("Superhelte sorteret efter styrke:");
+                            System.out.println("------------------------------------");
+
+                            printSorted(powerList);
+                        }
+                        case 5-> {
+                            ArrayList<Superhero> superPowerList = controller.sort(controller.getAllSuperheroes(), "superPower");
+                            System.out.println("Superhelte sorteret efter superpower:");
+                            System.out.println("------------------------------------");
+
+                            printSorted(superPowerList);
+                        }
+                        case 6-> {
+                            ArrayList<Superhero> isHumanList = controller.sort(controller.getAllSuperheroes(), "isHuman");
+                            System.out.println("Superhelte sorteret efter menneskestatus:");
+                            System.out.println("------------------------------------");
+
+                            printSorted(isHumanList);
                         }
                     }
                     inputError = false;
@@ -385,6 +417,18 @@ public class UserInterface {
                     scanner.nextLine();
                 }
             } while (inputError);
+        }
+    }
+
+    private void printSorted(ArrayList<Superhero> sortedSuperheroes){
+        for (Superhero superhero : sortedSuperheroes){
+            System.out.println("Superhelte navn: " + superhero.getHeroName());
+            System.out.println("Superkraft: " + superhero.getSuperPower());
+            System.out.println("Virkeligt navn: " + superhero.getRealName());
+            System.out.println("Oprindelsesår: " + superhero.getCreationYear());
+            System.out.println("Er menneske: " + superhero.isHuman());
+            System.out.println("Styrke: " + superhero.getPower());
+            System.out.println("------------------------------------");
         }
     }
 }
