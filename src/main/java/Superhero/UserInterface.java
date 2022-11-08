@@ -1,9 +1,7 @@
 package Superhero;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class UserInterface {
     private Scanner keyb = new Scanner(System.in).useLocale(Locale.ENGLISH); // Declaring scanner object
@@ -31,6 +29,7 @@ public class UserInterface {
             System.out.println("7. Load gemt data");
             System.out.println("8. Vis alle superhelte sorteret");
             System.out.println("9. Afslut");
+            System.out.println("(11. For test-sortering med 2 attributter)");
 
             // DO-while loop that keeps looping if input error is true
             do {
@@ -63,6 +62,9 @@ public class UserInterface {
             case 9 -> {
                 System.out.println("Afslutter programmet...");
                 System.exit(1); // Terminating program
+            }
+            case 11 -> {
+                sortHeroesWith2Attributes();
             }
             default -> System.out.println("Ugyldigt Input\n"); // by default if none of the above is input, print error
 
@@ -411,6 +413,73 @@ public class UserInterface {
                             System.out.println("------------------------------------");
 
                             printSorted(isHumanList);
+                        }
+                    }
+                    inputError = false;
+                } catch (InputMismatchException e) {
+                    System.out.println("Ugyldig input prøv venligst igen!");
+                    inputError = true;
+                    scanner.nextLine();
+                }
+            } while (inputError);
+        }
+    }
+
+    private void sortHeroesWith2Attributes() {
+        Scanner scanner = new Scanner(System.in);
+        int input = 0;
+        boolean inputError;
+
+        while(input!= 9){
+            // Welcome and menu
+            System.out.println("Sorter superhelte efter primær og sekundær attribut");
+            System.out.println("1. sorter først efter oprindelsesår dernæst efter heltenavn ");
+            System.out.println("2. sorter først efter styrke dernæst efter rigtig navn ");
+
+            System.out.println("9. exit");
+            // DO-while loop that keeps looping if input error is true
+            do {
+                // Try Catch that takes input from user in the menu, and handling if the input is not an int
+                try {
+                    ArrayList<Superhero> allSuperheroes = controller.getAllSuperheroes();
+                    input = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (input){
+                        case 1 -> {
+                            //Compare by creation year and then hero name
+                            Comparator<Superhero> compare = Comparator
+                                    .comparing(Superhero::getCreationYear)
+                                    .thenComparing(Superhero::getHeroName);
+
+                            List<Superhero> sortedSuperHeroes = allSuperheroes.stream().sorted(compare).toList();
+
+                            for (Superhero superhero : sortedSuperHeroes){
+                                System.out.println("Superhelte navn: " + superhero.getHeroName());
+                                System.out.println("Superkraft: " + superhero.getSuperPower());
+                                System.out.println("Virkeligt navn: " + superhero.getRealName());
+                                System.out.println("Oprindelsesår: " + superhero.getCreationYear());
+                                System.out.println("Er menneske: " + superhero.isHuman());
+                                System.out.println("Styrke: " + superhero.getPower());
+                                System.out.println("------------------------------------");
+                            }
+                        }
+                        case 2 -> {
+                            //Compare by strength and then real name
+                            Comparator<Superhero> compare = Comparator
+                                    .comparing(Superhero::getPower)
+                                    .thenComparing(Superhero::getRealName);
+
+                            List<Superhero> sortedSuperHeroes = allSuperheroes.stream().sorted(compare).toList();
+
+                            for (Superhero superhero : sortedSuperHeroes){
+                                System.out.println("Superhelte navn: " + superhero.getHeroName());
+                                System.out.println("Superkraft: " + superhero.getSuperPower());
+                                System.out.println("Virkeligt navn: " + superhero.getRealName());
+                                System.out.println("Oprindelsesår: " + superhero.getCreationYear());
+                                System.out.println("Er menneske: " + superhero.isHuman());
+                                System.out.println("Styrke: " + superhero.getPower());
+                                System.out.println("------------------------------------");
+                            }
                         }
                     }
                     inputError = false;
