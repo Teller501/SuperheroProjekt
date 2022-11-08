@@ -38,7 +38,7 @@ public class FileHandler {
 
     public void loadData(ArrayList<Superhero> allSuperheroes) throws FileNotFoundException {
         // Clear list of names before load:
-        //allSuperheroes.clear();
+        allSuperheroes.clear();
 
         Scanner reader = new Scanner(new File("data/superheroes.csv"));
 

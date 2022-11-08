@@ -6,6 +6,7 @@ public class Database {
 
     // attributes
     private ArrayList<Superhero> superheroes = new ArrayList<>();
+    private boolean changes = false;
 
 
     // creating superhero from parameters
@@ -14,6 +15,7 @@ public class Database {
         Superhero newSuperHero = new Superhero(realName, heroName, creationYear, superPower, isHuman, power);
         superheroes.add(newSuperHero);
 
+        changes = true;
         return newSuperHero;
     }
 
@@ -40,7 +42,12 @@ public class Database {
 
         getAllSuperheroes().remove(superhero);
         boolean success = true;
+        changes = true;
 
         return success;
+    }
+
+    public boolean isChanges() {
+        return changes;
     }
 }

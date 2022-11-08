@@ -46,4 +46,8 @@ public class Controller {
     public ArrayList<Superhero> sort(ArrayList<Superhero> allSuperheroes, String sortInput) {
         return fileHandler.sort(allSuperheroes, sortInput);
     }
+
+    public boolean isChanges(){
+        return database.isChanges();
+    }
 }

@@ -334,8 +334,12 @@ public class UserInterface {
     }
 
     private void saveData() {
-        controller.saveData();
-        System.out.println("Data is saved");
+        if (controller.isChanges()){
+            controller.saveData();
+            System.out.println("Data is saved");
+        }else{
+            System.out.println("Data is not saved, no changes made.");
+        }
     }
 
     private void loadData() {
