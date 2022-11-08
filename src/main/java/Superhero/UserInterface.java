@@ -420,6 +420,7 @@ public class UserInterface {
     }
 
     private void printSorted(ArrayList<Superhero> sortedSuperheroes){
+        // Looping through ArrayList of superheroes, printing out in list
         for (Superhero superhero : sortedSuperheroes){
             System.out.println("Superhelte navn: " + superhero.getHeroName());
             System.out.println("Superkraft: " + superhero.getSuperPower());

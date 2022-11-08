@@ -14,6 +14,7 @@ public class FileHandler {
     public void saveData(ArrayList<Superhero> allSuperheroes) throws FileNotFoundException {
         PrintStream output = new PrintStream(new File("data/superheroes.csv"));
 
+
         for (Superhero superhero : allSuperheroes) {
             output.print(superhero.getHeroName());
             output.print(";");
@@ -52,17 +53,23 @@ public class FileHandler {
     }
 
     private Superhero parseCSVLine(String line) {
-        String[] parts = line.split(";");
+        try{
+            String[] parts = line.split(";");
 
-        Superhero dataObjekt = new Superhero();
-        dataObjekt.setHeroName(parts[0]);
-        dataObjekt.setSuperPower(parts[1]);
-        dataObjekt.setRealName(parts[2]);
-        dataObjekt.setPower(parts[3]);
-        dataObjekt.setCreationYear(parts[4]);
-        //dataObjekt.isHuman(parts[5]);
+            Superhero dataObjekt = new Superhero();
+            dataObjekt.setHeroName(parts[0]);
+            dataObjekt.setSuperPower(parts[1]);
+            dataObjekt.setRealName(parts[2]);
+            dataObjekt.setPower(parts[3]);
+            dataObjekt.setCreationYear(parts[4]);
+            //dataObjekt.isHuman(parts[5]);
 
-        return dataObjekt;
+            return dataObjekt;
+        }catch(NumberFormatException e){
+            System.out.println("Kan ikke loade data, fejl i input");
+            return null;
+        }
+
     }
 
     public ArrayList<Superhero> sort(ArrayList<Superhero> allSuperheroes, String sortInput){

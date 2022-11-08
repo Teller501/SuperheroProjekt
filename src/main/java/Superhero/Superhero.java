@@ -82,4 +82,8 @@ public class Superhero {
     public void setCreationYear(String newCreationYear) {
         this.creationYear = Integer.parseInt(newCreationYear);
     }
+
+    public void setHuman(boolean human) {
+        this.isHuman = human;
+    }
 }
