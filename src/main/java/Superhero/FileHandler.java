@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class FileHandler {
@@ -72,16 +73,4 @@ public class FileHandler {
 
     }
 
-    public ArrayList<Superhero> sort(ArrayList<Superhero> allSuperheroes, String sortInput){
-        switch (sortInput){
-            case "heroName" -> Collections.sort(allSuperheroes, new HeroNameComparator());
-            case "realName" -> Collections.sort(allSuperheroes, new RealNameComparator());
-            case "creationYear" -> Collections.sort(allSuperheroes, new CreationYearComparator());
-            case "power" -> Collections.sort(allSuperheroes, new PowerComparator());
-            case "superPower" -> Collections.sort(allSuperheroes, new SuperPowerComparator());
-            case "isHuman" -> Collections.sort(allSuperheroes, new IsHumanComparator());
-        }
-
-        return  allSuperheroes;
-    }
 }

@@ -2,6 +2,8 @@ package Superhero;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Comparator;
+import Comparator.FlexibleComparator;
 
 public class Controller {
     Database database = new Database();
@@ -43,8 +45,15 @@ public class Controller {
         
     }
 
-    public ArrayList<Superhero> sort(ArrayList<Superhero> allSuperheroes, String sortInput) {
-        return fileHandler.sort(allSuperheroes, sortInput);
+    public ArrayList<Superhero> sort(String sortInput) {
+        Comparator comparator = new FlexibleComparator(sortInput);
+        database.getAllSuperheroes().sort(comparator);
+        return database.getAllSuperheroes();
+    }
+    public ArrayList<Superhero> sort(String primary, String secondary) {
+        Comparator comparator = new FlexibleComparator(primary);
+        database.getAllSuperheroes().sort(comparator.thenComparing(new FlexibleComparator(secondary)));
+        return database.getAllSuperheroes();
     }
 
     public boolean isChanges(){

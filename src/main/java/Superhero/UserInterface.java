@@ -58,7 +58,7 @@ public class UserInterface {
             case 5 -> deleteSuperhero();
             case 6 -> saveData();
             case 7 -> loadData();
-            case 8 -> sortHeroes();
+            case 8 -> sortHeroesInput();
             case 9 -> {
                 System.out.println("Afslutter programmet...");
                 System.exit(1); // Terminating program
@@ -349,11 +349,12 @@ public class UserInterface {
         System.out.println("Data loaded");
     }
 
-    private void sortHeroes(){
+    private void sortHeroesInput(){
         Scanner scanner = new Scanner(System.in);
 
         int input = 0;
         boolean inputError;
+        String sortInput = "";
 
         while(input!= 9){
             // Welcome and menu
@@ -373,48 +374,26 @@ public class UserInterface {
                     scanner.nextLine();
                     switch (input){
                         case 1 ->{
-                            ArrayList<Superhero> heroNameList = controller.sort(controller.getAllSuperheroes(), "heroName");
-
-                            System.out.println("Superhelte sorteret efter superhelte navn:");
-                            System.out.println("------------------------------------");
-                            printSorted(heroNameList);
+                            sortInput = "heroName";
                         }
                         case 2-> {
-                            ArrayList<Superhero> realNameList = controller.sort(controller.getAllSuperheroes(), "realName");
-                            System.out.println("Superhelte sorteret efter rigtige navn:");
-                            System.out.println("------------------------------------");
-
-                            printSorted(realNameList);
+                            sortInput = "realName";
                         }
                         case 3-> {
-                            ArrayList<Superhero> creationYearList = controller.sort(controller.getAllSuperheroes(), "creationYear");
-                            System.out.println("Superhelte sorteret efter oprindelsesår:");
-                            System.out.println("------------------------------------");
-
-                            printSorted(creationYearList);
+                            sortInput = "creationYear";
                         }
                         case 4-> {
-                            ArrayList<Superhero> powerList = controller.sort(controller.getAllSuperheroes(), "power");
-                            System.out.println("Superhelte sorteret efter styrke:");
-                            System.out.println("------------------------------------");
-
-                            printSorted(powerList);
+                            sortInput = "power";
                         }
                         case 5-> {
-                            ArrayList<Superhero> superPowerList = controller.sort(controller.getAllSuperheroes(), "superPower");
-                            System.out.println("Superhelte sorteret efter superpower:");
-                            System.out.println("------------------------------------");
-
-                            printSorted(superPowerList);
+                            sortInput = "superPower";
                         }
                         case 6-> {
-                            ArrayList<Superhero> isHumanList = controller.sort(controller.getAllSuperheroes(), "isHuman");
-                            System.out.println("Superhelte sorteret efter menneskestatus:");
-                            System.out.println("------------------------------------");
-
-                            printSorted(isHumanList);
+                            sortInput = "isHuman";
                         }
                     }
+                    ArrayList<Superhero> sortedList = controller.sort(sortInput);
+                    printSorted(sortedList);
                     inputError = false;
                 } catch (InputMismatchException e) {
                     System.out.println("Ugyldig input prøv venligst igen!");
