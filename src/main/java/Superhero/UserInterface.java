@@ -165,7 +165,7 @@ public class UserInterface {
                 System.out.println("Superkraft: " + superhero.getSuperPower());
                 System.out.println("Virkeligt navn: " + superhero.getRealName());
                 System.out.println("Oprindelsesår: " + superhero.getCreationYear());
-                System.out.println("Er menneske: " + superhero.isHuman());
+                System.out.println("Er " + (superhero.isHuman()?"":"ikke ") + "menneske!");
                 System.out.println("Styrke: " + superhero.getPower());
                 System.out.println("------------------------------------");
             }
@@ -288,6 +288,8 @@ public class UserInterface {
                     inputError = true;
                 }
             } while (inputError);
+
+            controller.setChanges(true);
 
         }
     }
@@ -500,7 +502,17 @@ public class UserInterface {
             System.out.println("Superkraft: " + superhero.getSuperPower());
             System.out.println("Virkeligt navn: " + superhero.getRealName());
             System.out.println("Oprindelsesår: " + superhero.getCreationYear());
-            System.out.println("Er menneske: " + superhero.isHuman());
+
+       /*     String status = "jfjgfg";
+            if(superhero.isHuman()) {
+               status = "";
+            } else {
+                status = "ikke";
+            }
+         */
+
+            System.out.println("Er " + (superhero.isHuman()?"":"ikke ") + "menneske!");
+
             System.out.println("Styrke: " + superhero.getPower());
             System.out.println("------------------------------------");
         }

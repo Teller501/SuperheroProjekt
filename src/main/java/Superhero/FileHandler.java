@@ -63,7 +63,7 @@ public class FileHandler {
             dataObjekt.setRealName(parts[2]);
             dataObjekt.setPower(parts[3]);
             dataObjekt.setCreationYear(parts[4]);
-            //dataObjekt.isHuman(parts[5]);
+            dataObjekt.setHuman(Boolean.parseBoolean(parts[5]));
 
             return dataObjekt;
         }catch(NumberFormatException e){

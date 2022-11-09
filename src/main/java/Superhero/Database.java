@@ -50,4 +50,8 @@ public class Database {
     public boolean isChanges() {
         return changes;
     }
+
+    public void setChanges(boolean changes) {
+        this.changes = changes;
+    }
 }

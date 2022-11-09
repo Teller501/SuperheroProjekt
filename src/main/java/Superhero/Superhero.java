@@ -50,12 +50,8 @@ public class Superhero {
     }
 
     // Returning different than "true" or "false" when printing isHuman boolean
-    public String isHuman() {
-        if (isHuman) {
-            return "Ja";
-        } else {
-            return "Nej";
-        }
+    public boolean isHuman() {
+        return isHuman;
     }
 
     // setting new hero name

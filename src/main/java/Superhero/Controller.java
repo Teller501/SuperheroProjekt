@@ -59,4 +59,8 @@ public class Controller {
     public boolean isChanges(){
         return database.isChanges();
     }
+
+    public void setChanges(boolean changes){
+        database.setChanges(changes);
+    }
 }
