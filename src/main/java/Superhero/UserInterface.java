@@ -367,7 +367,7 @@ public class UserInterface {
             System.out.println("4. sorter data efter superheltens styrke");
             System.out.println("5. sorter data efter superheltens superpower");
             System.out.println("6. sorter data efter superheltens menneskestatus");
-            System.out.println("8. sorter data efter primær og sekundær attributter"); // Sorts after two attributes
+            System.out.printf("\u001B[1m8. sorter data efter primær og sekundær attributter\n"); // Sorts after two attributes
             System.out.println("9. exit");
             // DO-while loop that keeps looping if input error is true
             do {

@@ -146,8 +146,8 @@ class ControllerTest {
     void sortRealName() {
         controller.createSuperHero("Anders", "test", 1, "nej",true, 1);
         controller.createSuperHero("Bob", "test", 1, "nej",true, 1);
-        controller.createSuperHero("Dennis", "test", 1, "nej",true, 1);
         controller.createSuperHero("Chris", "test", 1, "nej",true, 1);
+        controller.createSuperHero("Dennis", "test", 1, "nej",true, 1);
         controller.sort("realName","");
 
         ArrayList<Superhero> results = controller.getAllSuperheroes();
