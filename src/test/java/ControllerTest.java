@@ -2,8 +2,9 @@ import Superhero.Superhero;
 import Superhero.Controller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import Comparator.FlexibleComparator;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -139,5 +140,22 @@ class ControllerTest {
         int actualSize = resultsAfterDelete.size();
 
         assertEquals(expectedSize, actualSize);
+    }
+
+    @Test
+    void sort() {
+        controller.createSuperHero("Anders", "test", 1, "nej",true, 1);
+        controller.createSuperHero("Bob", "test", 1, "nej",true, 1);
+        controller.createSuperHero("Dennis", "test", 1, "nej",true, 1);
+        controller.createSuperHero("Chris", "test", 1, "nej",true, 1);
+        controller.sort("realName","");
+
+        ArrayList<Superhero> results = controller.getAllSuperheroes();
+
+        assertEquals("Anders",results.get(0).getRealName());
+        assertEquals("Bob",results.get(1).getRealName());
+        assertEquals("Chris",results.get(2).getRealName());
+        assertEquals("Dennis",results.get(3).getRealName());
+
     }
 }
