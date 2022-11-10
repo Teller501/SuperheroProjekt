@@ -463,28 +463,34 @@ public class UserInterface {
                     6. superheltens menneskestatus""");
                     int secondInput = scanner.nextInt();
                     scanner.nextLine();
-                    switch (secondInput){
-                        case 1 ->{
-                            secondary = "heroName";
+                    if (secondInput != input){
+                        switch (secondInput){
+                            case 1 ->{
+                                secondary = "heroName";
+                            }
+                            case 2-> {
+                                secondary = "realName";
+                            }
+                            case 3-> {
+                                secondary = "creationYear";
+                            }
+                            case 4-> {
+                                secondary = "power";
+                            }
+                            case 5-> {
+                                secondary = "superPower";
+                            }
+                            case 6-> {
+                                secondary = "isHuman";
+                            }
                         }
-                        case 2-> {
-                            secondary = "realName";
-                        }
-                        case 3-> {
-                            secondary = "creationYear";
-                        }
-                        case 4-> {
-                            secondary = "power";
-                        }
-                        case 5-> {
-                            secondary = "superPower";
-                        }
-                        case 6-> {
-                            secondary = "isHuman";
-                        }
+                        ArrayList<Superhero> sortedList = controller.sort(primary,secondary);
+                        System.out.println("Sorteret superhelte efter: " + primary + " og " + secondary);
+                        printSorted(sortedList);
+                    }else {
+                        System.out.println("Sekundær attribut kan ikke være samme som primær!");
+                        inputError = true;
                     }
-                    ArrayList<Superhero> sortedList = controller.sort(primary,secondary);
-                    printSorted(sortedList);
                     inputError = false;
                 } catch (InputMismatchException e) {
                     System.out.println("Ugyldig input prøv venligst igen!");
