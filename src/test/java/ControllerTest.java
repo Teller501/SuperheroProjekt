@@ -143,7 +143,7 @@ class ControllerTest {
     }
 
     @Test
-    void sort() {
+    void sortRealName() {
         controller.createSuperHero("Anders", "test", 1, "nej",true, 1);
         controller.createSuperHero("Bob", "test", 1, "nej",true, 1);
         controller.createSuperHero("Dennis", "test", 1, "nej",true, 1);
@@ -156,6 +156,22 @@ class ControllerTest {
         assertEquals("Bob",results.get(1).getRealName());
         assertEquals("Chris",results.get(2).getRealName());
         assertEquals("Dennis",results.get(3).getRealName());
+
+    }
+    @Test
+    void sortCreationYear() {
+        controller.createSuperHero("Anders", "test", 210, "nej",true, 1);
+        controller.createSuperHero("Bob", "test", 910, "nej",true, 1);
+        controller.createSuperHero("Dennis", "test", 400, "nej",true, 1);
+        controller.createSuperHero("Chris", "test", 5000, "nej",true, 1);
+        controller.sort("creationYear","");
+
+        ArrayList<Superhero> results = controller.getAllSuperheroes();
+
+        assertEquals(210,results.get(0).getCreationYear());
+        assertEquals(400,results.get(1).getCreationYear());
+        assertEquals(910,results.get(2).getCreationYear());
+        assertEquals(5000,results.get(3).getCreationYear());
 
     }
 }
