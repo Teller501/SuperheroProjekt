@@ -29,7 +29,7 @@ public class FlexibleComparator implements Comparator<Superhero> {
                 return o1.getSuperPower().compareTo(o2.getSuperPower());
             }
             case "isHuman" -> {
-                //return Boolean.compare(o1.isHuman(),o2.isHuman());
+                return Boolean.compare(o1.isHuman(),o2.isHuman());
             }
         }
         return 0;
