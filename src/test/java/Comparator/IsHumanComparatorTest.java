@@ -1,3 +1,4 @@
+/*
 package Comparator;
 
 import Superhero.Database;
@@ -42,4 +43,4 @@ class IsHumanComparatorTest {
 
     }
 
-}
+}*/
