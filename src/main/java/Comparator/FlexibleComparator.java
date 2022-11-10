@@ -10,6 +10,7 @@ public class FlexibleComparator implements Comparator<Superhero> {
         this.sortBy = sortBy;
     }
 
+    // Sorting method for all attributes:
     @Override
     public int compare(Superhero o1, Superhero o2) {
         switch(sortBy){

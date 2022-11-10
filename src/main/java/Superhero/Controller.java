@@ -9,37 +9,43 @@ public class Controller {
     Database database = new Database();
     FileHandler fileHandler = new FileHandler();
 
+    // Creating a superhero from database
     public void createSuperHero(String realName, String heroName, int creationYear, String superPower, boolean isHuman, double power) {
         database.createSuperHero(realName,heroName,creationYear,superPower,isHuman,power);
     }
 
+    // Gets the superhero ArrayList from database
     public ArrayList<Superhero> getAllSuperheroes() {
         return database.getAllSuperheroes();
     }
 
+    // Calls the search method from database
     public ArrayList<Superhero> searchForSuperhero(String searchTerm) {
         return database.searchForSuperhero(searchTerm);
     }
 
+    // Calls the delete method from database
     public void deleteSuperhero(Superhero deleteSuperhero) {
         database.deleteSuperhero(deleteSuperhero);
     }
 
+    // Calls the save method from FileHandler Class
     public void saveData() {
 
         try {
             fileHandler.saveData(database.getAllSuperheroes());
         }
-        catch (FileNotFoundException e) {
+        catch (FileNotFoundException e) { // if the file does not exist
             System.out.println("File do not exist");
         }
     }
 
+    // Calls the load method from FileHandler Class
     public void loadData() {
         try {
             fileHandler.loadData(database.getAllSuperheroes());
         }
-        catch (FileNotFoundException e) {
+        catch (FileNotFoundException e) {// if the file does not exist
             System.out.println("File do not exist");
         }
         

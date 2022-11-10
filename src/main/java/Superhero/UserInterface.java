@@ -334,6 +334,7 @@ public class UserInterface {
         }
     }
 
+    // Saves the data if changes has been made
     private void saveData() {
         if (controller.isChanges()){
             controller.saveData();
@@ -343,11 +344,13 @@ public class UserInterface {
         }
     }
 
+    // Loading data from superheroes.csv
     private void loadData() {
         controller.loadData();
         System.out.println("Data loaded");
     }
 
+    // Sorting heroes
     private void sortHeroesInput(){
         Scanner scanner = new Scanner(System.in);
 
@@ -356,7 +359,7 @@ public class UserInterface {
         String sortInput = "";
 
         while(input!= 9){
-            // Welcome and menu
+            // Menu for selecting sort attribute
             System.out.println("Sorter superhelte");
             System.out.println("1. sorter data efter superhelte navn");
             System.out.println("2. sorter data efter superheltens rigtige navn");
@@ -364,7 +367,7 @@ public class UserInterface {
             System.out.println("4. sorter data efter superheltens styrke");
             System.out.println("5. sorter data efter superheltens superpower");
             System.out.println("6. sorter data efter superheltens menneskestatus");
-            System.out.println("8. sorter data efter primær og sekundær attributter");
+            System.out.println("8. sorter data efter primær og sekundær attributter"); // Sorts after two attributes
             System.out.println("9. exit");
             // DO-while loop that keeps looping if input error is true
             do {
@@ -372,31 +375,18 @@ public class UserInterface {
                 try {
                     input = scanner.nextInt();
                     scanner.nextLine();
+                    // Sets the sortInput to corrosponding attribute, so it can be used in the sorting method
                     switch (input){
-                        case 1 ->{
-                            sortInput = "heroName";
-                        }
-                        case 2-> {
-                            sortInput = "realName";
-                        }
-                        case 3-> {
-                            sortInput = "creationYear";
-                        }
-                        case 4-> {
-                            sortInput = "power";
-                        }
-                        case 5-> {
-                            sortInput = "superPower";
-                        }
-                        case 6-> {
-                            sortInput = "isHuman";
-                        }
-                        case 8 -> {
-                            sortHeroesWith2Attributes();
-                        }
+                        case 1 -> sortInput = "heroName";
+                        case 2-> sortInput = "realName";
+                        case 3-> sortInput = "creationYear";
+                        case 4-> sortInput = "power";
+                        case 5-> sortInput = "superPower";
+                        case 6-> sortInput = "isHuman";
+                        case 8 -> sortHeroesWith2Attributes();
                     }
-                    ArrayList<Superhero> sortedList = controller.sort(sortInput);
-                    printSorted(sortedList);
+                    ArrayList<Superhero> sortedList = controller.sort(sortInput); // Calls sorting method with the sortInput
+                    printSorted(sortedList); // Prints the list of sorted heroes
                     inputError = false;
                 } catch (InputMismatchException e) {
                     System.out.println("Ugyldig input prøv venligst igen!");
@@ -407,15 +397,16 @@ public class UserInterface {
         }
     }
 
+    // Same as above method, just taking 2 inputs and sorting after those attributes
     private void sortHeroesWith2Attributes() {
         Scanner scanner = new Scanner(System.in);
         int input = 0;
-        String primary = "";
-        String secondary = "";
+        String primary = ""; // For primary attribute
+        String secondary = ""; // For secondary input
         boolean inputError;
 
         while(input!= 9){
-            // Welcome and menu
+            // Menu
             System.out.println("Sorter superhelte efter primær og sekundær attribut");
             System.out.println("""
                     1. superhelte navn
@@ -430,28 +421,16 @@ public class UserInterface {
             do {
                 // Try Catch that takes input from user in the menu, and handling if the input is not an int
                 try {
-                    ArrayList<Superhero> allSuperheroes = controller.getAllSuperheroes();
                     input = scanner.nextInt();
                     scanner.nextLine();
+                    // Switch on the first input for primary attribute
                     switch (input){
-                        case 1 ->{
-                            primary = "heroName";
-                        }
-                        case 2-> {
-                            primary = "realName";
-                        }
-                        case 3-> {
-                            primary = "creationYear";
-                        }
-                        case 4-> {
-                            primary = "power";
-                        }
-                        case 5-> {
-                            primary = "superPower";
-                        }
-                        case 6-> {
-                            primary = "isHuman";
-                        }
+                        case 1 -> primary = "heroName";
+                        case 2-> primary = "realName";
+                        case 3-> primary = "creationYear";
+                        case 4-> primary = "power";
+                        case 5-> primary = "superPower";
+                        case 6-> primary = "isHuman";
                     }
                     System.out.println("Vælg næste attribut");
                     System.out.println("""
@@ -463,28 +442,19 @@ public class UserInterface {
                     6. superheltens menneskestatus""");
                     int secondInput = scanner.nextInt();
                     scanner.nextLine();
+
+                    // Checks if the secondInput is not the same as first input
                     if (secondInput != input){
+                        // Then sets the secondary attribute
                         switch (secondInput){
-                            case 1 ->{
-                                secondary = "heroName";
-                            }
-                            case 2-> {
-                                secondary = "realName";
-                            }
-                            case 3-> {
-                                secondary = "creationYear";
-                            }
-                            case 4-> {
-                                secondary = "power";
-                            }
-                            case 5-> {
-                                secondary = "superPower";
-                            }
-                            case 6-> {
-                                secondary = "isHuman";
-                            }
+                            case 1 -> secondary = "heroName";
+                            case 2-> secondary = "realName";
+                            case 3-> secondary = "creationYear";
+                            case 4-> secondary = "power";
+                            case 5-> secondary = "superPower";
+                            case 6-> secondary = "isHuman";
                         }
-                        ArrayList<Superhero> sortedList = controller.sort(primary,secondary);
+                        ArrayList<Superhero> sortedList = controller.sort(primary,secondary); // Sort method for two attributes
                         System.out.println("Sorteret superhelte efter: " + primary + " og " + secondary);
                         printSorted(sortedList);
                     }else {
@@ -508,17 +478,7 @@ public class UserInterface {
             System.out.println("Superkraft: " + superhero.getSuperPower());
             System.out.println("Virkeligt navn: " + superhero.getRealName());
             System.out.println("Oprindelsesår: " + superhero.getCreationYear());
-
-       /*     String status = "jfjgfg";
-            if(superhero.isHuman()) {
-               status = "";
-            } else {
-                status = "ikke";
-            }
-         */
-
             System.out.println("Er " + (superhero.isHuman()?"":"ikke ") + "menneske!");
-
             System.out.println("Styrke: " + superhero.getPower());
             System.out.println("------------------------------------");
         }

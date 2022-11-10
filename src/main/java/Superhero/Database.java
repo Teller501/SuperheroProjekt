@@ -38,9 +38,10 @@ public class Database {
         return searchResults;
     }
 
+    // Deletes a superhero
     public boolean deleteSuperhero(Superhero superhero) {
 
-        getAllSuperheroes().remove(superhero);
+        getAllSuperheroes().remove(superhero); // takes  the ArrayList of superheroes and removing the appropriate superhero
         boolean success = true;
         changes = true;
 
